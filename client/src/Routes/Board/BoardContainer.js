@@ -4,6 +4,8 @@ import { boardApi } from "../../Api";
 
 class BoardContainer extends Component {
     handleSubmit = async() => {
+        const boardForm = document.boardForm;
+
         await boardApi.upload();
     }
     render() {

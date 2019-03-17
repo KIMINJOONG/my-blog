@@ -9,9 +9,11 @@ const Container = styled.div`
 
 const BoardPresenter = ({handleSubmit}) => (
     <Container>
-        <span>제목 : </span><input type="text" />
-        <span>내용 : </span><textarea />
-        <input type="submit" value="등록" onClick={handleSubmit}/>
+        <form name="boardForm" action="boardServer/upload" method="post">
+            <span>제목 : </span><input type="text" name="title" />
+            <span>내용 : </span><textarea name="content" />
+            <input type="submit" value="등록" onClick={handleSubmit}/>
+        </form>
     </Container>
 );
 
