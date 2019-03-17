@@ -1,15 +1,11 @@
-const HOME = "/";
-const JOIN = "/join";
-const LOGIN = "/login";
-const LOGOUT = "/logout";
-const SEARCH = "/search";
+
+
+// Board
+
+const BOARD = "/boardServer";
 
 const routes = {
-    home: HOME,
-    join: JOIN,
-    login: LOGIN,
-    logout: LOGOUT,
-    search: SEARCH
+    board: BOARD
 };
 
 export default routes;

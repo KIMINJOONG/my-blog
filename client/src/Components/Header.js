@@ -11,7 +11,10 @@ const List = styled.ul`
 `;
 
 const Item = styled.li`
-
+    font-size: 14px;
+    color: white;
+    float: left;
+    margin-left: 30px;
 `;
 
 const SLink = styled(Link)``;
