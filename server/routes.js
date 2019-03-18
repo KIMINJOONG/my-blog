@@ -3,9 +3,11 @@
 // Board
 
 const BOARD = "/boardServer";
+const UPLOAD = "/upload";
 
 const routes = {
-    board: BOARD
+    board: BOARD,
+    upload: UPLOAD
 };
 
 export default routes;

@@ -1,13 +1,10 @@
 import express from "express";
 import routes from "../routes";
+import { postUpload } from "../controller/BoardController";
 
 const boardRouter = express.Router();
 
 
-boardRouter.post("/upload", (req, res) => {
-    console.log(req);
-    console.log("보드 라우터");
-    
-});
+boardRouter.post(routes.upload, postUpload);
 
 export default boardRouter;
