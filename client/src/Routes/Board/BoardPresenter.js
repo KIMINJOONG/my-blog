@@ -11,7 +11,7 @@ const BoardPresenter = ({handleSubmit}) => (
     <Container>
         <form name="boardForm" action="boardServer/upload" method="post">
             <span>제목 : </span><input type="text" name="title" />
-            <span>내용 : </span><textarea name="content" />
+            <span>내용 : </span><textarea name="description" />
             <input type="submit" value="등록" onClick={handleSubmit}/>
         </form>
     </Container>

@@ -1,9 +1,18 @@
-export const postUpload = (req, res) => {
+import Board from "../models/Board";
+
+export const postUpload = async (req, res) => {
+    console.log("들어옴");
     const {
         body : {
-            title
+            title,
+            description
         }
     } = req;
-    console.log(title);
-    console.log("보드컨트롤러");
+    
+    await Board.create({
+        title,
+        description
+    });
+
+    console.log("성공");
 };
