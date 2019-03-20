@@ -1,7 +1,6 @@
 import Board from "../models/Board";
 
 export const postUpload = async (req, res) => {
-    console.log("들어옴");
     const {
         body : {
             title,
@@ -14,5 +13,11 @@ export const postUpload = async (req, res) => {
         description
     });
 
-    console.log("성공");
+};
+
+export const getList = async (req, res) => {
+    console.log("리스트 들어옴");
+    const boards = await Board.find({});
+    console.log(boards);
+    res.render("board", boards);
 };

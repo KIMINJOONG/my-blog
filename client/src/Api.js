@@ -1,9 +1,10 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "http://localhost:3000/board"
+    baseURL: "http://localhost:3000/"
 });
 
 export const boardApi = {
-    upload: () => api.post("boardServer/upload")
+    upload: () => api.post("boardServer/upload"),
+    getList: () => api.get("boardServer/list")
 };

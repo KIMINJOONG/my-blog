@@ -1,10 +1,11 @@
 import express from "express";
 import routes from "../routes";
-import { postUpload } from "../controller/BoardController";
+import { postUpload, getList } from "../controller/BoardController";
 
 const boardRouter = express.Router();
 
 
 boardRouter.post(routes.upload, postUpload);
+boardRouter.get(routes.boardList, getList);
 
 export default boardRouter;
