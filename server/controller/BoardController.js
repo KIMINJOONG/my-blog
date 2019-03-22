@@ -18,6 +18,5 @@ export const postUpload = async (req, res) => {
 export const getList = async (req, res) => {
     console.log("리스트 들어옴");
     const boards = await Board.find({});
-    console.log(boards);
-    res.render("board", boards);
+    res.send(boards);
 };

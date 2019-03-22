@@ -3,12 +3,17 @@ import BoardPresenter from "./BoardPresenter";
 import { boardApi } from "../../Api";
 
 class BoardContainer extends Component {
-    componentDidMount(){
-        this.getBoardList();
+    state = {
+        boards: []
+    }
+    async componentDidMount (){
+        const request = await boardApi.getList();
+        const result = request.data;
+        console.log(result);
     }
 
     getBoardList = async() => {
-        await boardApi.getList();
+
     }
 
     handleSubmit = async() => {
