@@ -4,12 +4,24 @@ import { boardApi } from "../../Api";
 
 class BoardContainer extends Component {
     state = {
-        boards: []
+        boardsResult: null,
+        error: null,
+        loading: null
     }
     async componentDidMount (){
-        const request = await boardApi.getList();
-        const result = request.data;
-        console.log(result);
+        let boardsResult, error;
+        try {
+            ({data : boardsResult} = await boardApi.getList());
+        }catch {
+            error= "Cant find boards";
+        }finally {
+            this.setState({
+                loading: false,
+                boardsResult,
+                error
+            })
+        }
+        
     }
 
     getBoardList = async() => {
@@ -23,6 +35,8 @@ class BoardContainer extends Component {
     }
     render() {
         const {handleSubmit} = this;
+        const { boardsResult } = this.state;
+        console.log(boardsResult);
         return <BoardPresenter handleSubmit={handleSubmit}/>
     }
 }
