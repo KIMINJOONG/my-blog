@@ -29,15 +29,12 @@ class BoardContainer extends Component {
     }
 
     handleSubmit = async() => {
-        const boardForm = document.boardForm;
-
         await boardApi.upload();
     }
     render() {
         const {handleSubmit} = this;
         const { boardsResult } = this.state;
-        console.log(boardsResult);
-        return <BoardPresenter handleSubmit={handleSubmit}/>
+        return <BoardPresenter handleSubmit={handleSubmit} boardsResult={boardsResult}/>
     }
 }
 

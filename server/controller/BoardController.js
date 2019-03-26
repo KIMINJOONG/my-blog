@@ -12,11 +12,11 @@ export const postUpload = async (req, res) => {
         title,
         description
     });
+    res.redirect("/board");
 
 };
 
 export const getList = async (req, res) => {
-    console.log("리스트 들어옴");
     const boards = await Board.find({});
     res.send(boards);
 };
