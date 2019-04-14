@@ -25,16 +25,9 @@ class BoardContainer extends Component {
 
   getBoardList = async () => {};
 
-  handleSubmit = async () => {
-    await boardApi.upload();
-  };
   render() {
-    const { handleSubmit } = this;
     const { boardsResult } = this.state;
-    console.log(boardsResult);
-    return (
-      <BoardPresenter handleSubmit={handleSubmit} boardsResult={boardsResult} />
-    );
+    return <BoardPresenter boardsResult={boardsResult} />;
   }
 }
 

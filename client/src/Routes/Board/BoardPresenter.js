@@ -4,26 +4,20 @@ import styled from "styled-components";
 import Helmet from "react-helmet";
 import Boards from "../../Components/Boards";
 import Section from "../../Components/Section";
-//import Section from "../../Components/Section"
+import { Link } from "react-router-dom";
 
 const Container = styled.div``;
-const Error = styled.h3``;
+const BoardWrite = styled(Link)`
+  cursor: pointer;
+`;
 
-const BoardPresenter = ({ handleSubmit, boardsResult }) => (
+const BoardPresenter = ({ boardsResult }) => (
   <>
     <Helmet>
       <title>게시판 | kohubi's blog</title>
     </Helmet>
     <Container>
-      <form name="boardForm" action="boardServer/upload" method="post">
-        <span>제목 : </span>
-        <input type="text" name="title" />
-        <span>내용 : </span>
-        <textarea name="description" />
-        <input type="submit" value="등록" onClick={handleSubmit} />
-      </form>
-    </Container>
-    <Container>
+      <BoardWrite to="/board/write">글쓰기</BoardWrite>
       {boardsResult && (
         <Section>
           {boardsResult.map((result, index) => (
