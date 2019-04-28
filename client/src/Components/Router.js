@@ -9,6 +9,7 @@ import Header from "../Components/Header";
 import Home from "../Routes/Home";
 import Board from "../Routes/Board";
 import BoardWrite from "../Routes/Board/BoardWrite";
+import BoardDetail from "../Routes/Board/BoardDetail";
 
 export default () => (
   <Router>
@@ -18,6 +19,7 @@ export default () => (
         <Route path="/" exact component={Home} />
         <Route path="/board" exact component={Board} />
         <Route path="/board/write" exact component={BoardWrite} />
+        <Route path="/board/detail/:id" exact component={BoardDetail} />
         <Redirect from="*" to="/" />
       </Switch>
     </>

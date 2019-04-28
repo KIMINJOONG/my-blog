@@ -25,8 +25,8 @@ const Title = styled.span`
   text-align: center;
 `;
 
-const Boards = ({ title }) => (
-  <Link to="http://localhost:3000">
+const Boards = ({ title, id }) => (
+  <Link to={`board/detail/${id}`}>
     <Container>
       <ImageContainer>
         <Image bgUrl={require("../assets/noPosterSmall.png")} />

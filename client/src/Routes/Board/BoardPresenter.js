@@ -21,7 +21,7 @@ const BoardPresenter = ({ boardsResult }) => (
       {boardsResult && (
         <Section>
           {boardsResult.map((result, index) => (
-            <Boards key={index} title={result.title} />
+            <Boards key={index} title={result.title} id={result._id} />
           ))}
         </Section>
       )}
