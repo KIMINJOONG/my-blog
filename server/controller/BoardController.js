@@ -6,7 +6,6 @@ export const postUpload = async (req, res) => {
       data: { title, description }
     }
   } = req;
-  console.log(title, description);
   await Board.create({
     title,
     description
@@ -20,8 +19,9 @@ export const getList = async (req, res) => {
 };
 
 export const getDetail = async (req, res) => {
-  const id = req.id;
-  console.log(req);
-  const boardDetail = await Board.find({ _id: id });
-  res.send(boardDetail);
+  const {
+    params: { id }
+  } = req;
+  const boardDetail = await Board.findById(id);
+  res.status(200).json(boardDetail);
 };

@@ -10,5 +10,5 @@ export const boardApi = {
       data
     }),
   getList: () => api.get("board/list"),
-  getDetail: () => api.get("board/detail")
+  getDetail: id => api.get(`board/detail/${id}`)
 };
