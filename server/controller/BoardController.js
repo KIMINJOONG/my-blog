@@ -2,9 +2,11 @@ import Board from "../models/Board";
 
 export const postUpload = async (req, res) => {
   const {
-    body: { title, description }
+    body: {
+      data: { title, description }
+    }
   } = req;
-
+  console.log(title, description);
   await Board.create({
     title,
     description

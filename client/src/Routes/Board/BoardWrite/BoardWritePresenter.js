@@ -4,16 +4,30 @@ import Helmet from "react-helmet";
 
 const Container = styled.div``;
 
-const BoardWritePresenter = () => (
+const BoardWritePresenter = ({
+  title,
+  description,
+  onChangeInput,
+  onSubmitForm
+}) => (
   <>
     <Helmet>게시글 쓰기 | kohubi's blog</Helmet>
     <Container>
-      <form name="boardForm" action="boardServer/upload" method="post">
+      <form name="boardForm" onSubmit={onSubmitForm}>
         <span>제목 : </span>
-        <input type="text" name="title" />
+        <input
+          type="text"
+          name="title"
+          onChange={onChangeInput}
+          value={title}
+        />
         <span>내용 : </span>
-        <textarea name="description" />
-        <input type="submit" value="등록" />
+        <textarea
+          name="description"
+          onChange={onChangeInput}
+          value={description}
+        />
+        <button onClick={onSubmitForm}>등록</button>
       </form>
     </Container>
   </>

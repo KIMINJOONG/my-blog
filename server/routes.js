@@ -1,6 +1,6 @@
 // Board
 
-const BOARD = "/boardServer";
+const BOARD = "/board";
 const UPLOAD = "/upload";
 const BOARDLIST = "/list";
 const BOARDDETAIL = "/detail";
