@@ -25,3 +25,11 @@ export const getDetail = async (req, res) => {
   const boardDetail = await Board.findById(id);
   res.status(200).json(boardDetail);
 };
+
+export const boardDelete = async (req, res) => {
+  const {
+    params: { id }
+  } = req;
+  await Board.findOneAndRemove({ _id: id });
+  res.status(200).json("success");
+};
