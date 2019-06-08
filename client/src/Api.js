@@ -11,5 +11,6 @@ export const boardApi = {
     }),
   getList: () => api.get("board/list"),
   getDetail: id => api.get(`board/detail/${id}`),
-  delete: id => api.delete(`board/delete/${id}`)
+  delete: id => api.delete(`board/delete/${id}`),
+  update: data => api.put(`board/update/${data.id}`, data)
 };

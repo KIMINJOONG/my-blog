@@ -44,7 +44,13 @@ class BoardEtailContainer extends Component {
   updateFn = e => {
     e.preventDefault();
     const id = this.props.location.pathname.split("/")[3];
-    this.props.boardUpdate(id);
+    const { title, description } = this.state;
+    const data = {
+      title,
+      description,
+      id
+    };
+    this.props.boardUpdate(data);
   };
   render() {
     const { isUpdateForm, title, description } = this.state;

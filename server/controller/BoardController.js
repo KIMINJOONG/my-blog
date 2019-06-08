@@ -33,3 +33,11 @@ export const boardDelete = async (req, res) => {
   await Board.findOneAndRemove({ _id: id });
   res.status(200).json("success");
 };
+
+export const boardUpdate = async (req, res) => {
+  const {
+    params: { id },
+    body: { title, description }
+  } = req;
+  await Board.findOneAndUpdate({ _id: id }, { title, description });
+};

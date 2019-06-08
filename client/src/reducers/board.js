@@ -41,9 +41,9 @@ export const boardDelete = id => ({
   id
 });
 
-export const boardUpdate = id => ({
+export const boardUpdate = data => ({
   type: BOARD_UPDATE_REQUEST,
-  id
+  data
 });
 
 const reducer = (state = initialState, action) => {

@@ -93,13 +93,14 @@ function* watchBoardDelete() {
   yield takeLatest(BOARD_DELETE_REQUEST, boardDelete);
 }
 
-function* boardUpdateAPI(id) {
-  yield console.log("id : ", id);
+function* boardUpdateAPI(data) {
+  const result = yield boardApi.update(data);
+  return result;
 }
 
 function* boardUpdate(action) {
   try {
-    yield call(boardUpdateAPI, action.id);
+    yield call(boardUpdateAPI, action.data);
     yield put({
       type: BOARD_UPDATE_SUCCESS
     });
