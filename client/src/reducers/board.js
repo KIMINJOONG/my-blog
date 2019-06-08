@@ -18,6 +18,10 @@ export const GET_BOARD_DETAIL_REQUEST = "GET_BOARD_DETAIL_REQUEST";
 export const GET_BOARD_DETAIL_SUCCESS = "GET_BOARD_DETAIL_SUCCESS";
 export const GET_BOARD_DETAIL_FAILURE = "GET_BOARD_DETAIL_FAILURE";
 
+export const BOARD_UPLOAD_REQUEST = "BOARD_UPLOAD_REQUEST";
+export const BOARD_UPLOAD_SUCCESS = "BOARD_UPLOAD_SUCCESS";
+export const BOARD_UPLOAD_FAILURE = "BOARD_UPLOAD_FAILURE";
+
 export const BOARD_DELETE_REQUEST = "BOARD_DELETE_REQUEST";
 export const BOARD_DELETE_SUCCESS = "BOARD_DELETE_SUCCESS";
 export const BOARD_DELETE_FAILURE = "BOARD_DELETE_FAILURE";
@@ -43,6 +47,11 @@ export const boardDelete = id => ({
 
 export const boardUpdate = data => ({
   type: BOARD_UPDATE_REQUEST,
+  data
+});
+
+export const boardUpload = data => ({
+  type: BOARD_UPLOAD_REQUEST,
   data
 });
 
@@ -129,6 +138,25 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         error: "error"
+      };
+    }
+    case BOARD_UPLOAD_REQUEST: {
+      return {
+        ...state,
+        loading: false
+      };
+    }
+    case BOARD_UPLOAD_SUCCESS: {
+      return {
+        ...state,
+        loading: true
+      };
+    }
+    case BOARD_UPLOAD_FAILURE: {
+      return {
+        ...state,
+        error: "error",
+        loading: false
       };
     }
     default: {

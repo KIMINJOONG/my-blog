@@ -8,7 +8,8 @@ import {
 import { bindActionCreators } from "redux";
 const mapStateToProps = state => ({
   boardResult: state.board.boardResult,
-  isDelete: state.board.isDelete
+  isDelete: state.board.isDelete,
+  isUpdate: state.board.isUpdate
 });
 
 const mapDispatchToProps = dispatch =>

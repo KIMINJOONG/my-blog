@@ -19,7 +19,10 @@ import {
   BOARD_DELETE_REQUEST,
   BOARD_UPDATE_FAILURE,
   BOARD_UPDATE_SUCCESS,
-  BOARD_UPDATE_REQUEST
+  BOARD_UPDATE_REQUEST,
+  BOARD_UPLOAD_REQUEST,
+  BOARD_UPLOAD_SUCCESS,
+  BOARD_UPLOAD_FAILURE
 } from "../reducers/board";
 
 import { boardApi } from "../Api";
@@ -112,6 +115,29 @@ function* boardUpdate(action) {
   }
 }
 
+function* boardUploadAPI(data) {
+  const result = yield boardApi.upload(data);
+  return result;
+}
+
+function* boardUpload(action) {
+  yield call(boardUploadAPI, action.data);
+  try {
+    yield put({
+      type: BOARD_UPLOAD_SUCCESS
+    });
+  } catch (e) {
+    yield put({
+      type: BOARD_UPLOAD_FAILURE,
+      error: e
+    });
+  }
+}
+
+function* watchBoardUpload() {
+  yield takeLatest(BOARD_UPLOAD_REQUEST, boardUpload);
+}
+
 function* watchBoardUpdate() {
   yield takeLatest(BOARD_UPDATE_REQUEST, boardUpdate);
 }
@@ -120,6 +146,7 @@ export default function* boardSaga() {
     fork(watchGetBoardList),
     fork(watchGetBoardDetail),
     fork(watchBoardDelete),
-    fork(watchBoardUpdate)
+    fork(watchBoardUpdate),
+    fork(watchBoardUpload)
   ]);
 }

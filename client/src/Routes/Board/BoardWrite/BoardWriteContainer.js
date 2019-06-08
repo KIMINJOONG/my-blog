@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import BoardWritePresenter from "./BoardWritePresenter";
-import { boardApi } from "../../../Api";
 
 class BoardWriteContainer extends Component {
   state = {
@@ -14,13 +13,13 @@ class BoardWriteContainer extends Component {
     });
   };
 
-  onSubmitForm = async e => {
+  onSubmitForm = e => {
     e.preventDefault();
     const data = {
       title: this.state.title,
       description: this.state.description
     };
-    await boardApi.upload(data);
+    this.props.boardUpload(data);
   };
   render() {
     const { title, description } = this.state;

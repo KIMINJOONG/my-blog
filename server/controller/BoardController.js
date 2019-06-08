@@ -10,7 +10,7 @@ export const postUpload = async (req, res) => {
     title,
     description
   });
-  res.redirect("/board");
+  res.status(200).json("success");
 };
 
 export const getList = async (req, res) => {
@@ -40,4 +40,5 @@ export const boardUpdate = async (req, res) => {
     body: { title, description }
   } = req;
   await Board.findOneAndUpdate({ _id: id }, { title, description });
+  res.status(200).json("success");
 };
