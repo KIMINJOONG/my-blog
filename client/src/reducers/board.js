@@ -5,7 +5,9 @@ export const initialState = {
   title: "",
   description: "",
   boardResult: {},
-  isDelete: false
+  isDelete: false,
+  isUpload: false,
+  isUpdate: false
 };
 
 export const GET_BOARD_LIST_REQUEST = "GET_BOARD_LIST_REQUEST";
@@ -20,6 +22,11 @@ export const BOARD_DELETE_REQUEST = "BOARD_DELETE_REQUEST";
 export const BOARD_DELETE_SUCCESS = "BOARD_DELETE_SUCCESS";
 export const BOARD_DELETE_FAILURE = "BOARD_DELETE_FAILURE";
 
+export const BOARD_UPDATE_REQUEST = "BOARD_UPDATE_REQUEST";
+export const BOARD_UPDATE_SUCCESS = "BOARD_UPDATE_SUCCESS";
+export const BOARD_UPDATE_FAILURE = "BOARD_UPDATE_FAILURE";
+
+//actions
 export const getBoardAction = () => ({
   type: GET_BOARD_LIST_REQUEST
 });
@@ -31,6 +38,11 @@ export const getBoardDetail = id => ({
 
 export const boardDelete = id => ({
   type: BOARD_DELETE_REQUEST,
+  id
+});
+
+export const boardUpdate = id => ({
+  type: BOARD_UPDATE_REQUEST,
   id
 });
 
@@ -96,6 +108,27 @@ const reducer = (state = initialState, action) => {
         loading: false,
         error: "error",
         isDelete: false
+      };
+    }
+    case BOARD_UPDATE_REQUEST: {
+      return {
+        ...state,
+        loading: false,
+        isUpdate: false
+      };
+    }
+    case BOARD_UPDATE_SUCCESS: {
+      return {
+        ...state,
+        loading: true,
+        isUpdate: true
+      };
+    }
+
+    case BOARD_UPDATE_FAILURE: {
+      return {
+        ...state,
+        error: "error"
       };
     }
     default: {

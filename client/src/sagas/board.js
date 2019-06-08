@@ -16,7 +16,10 @@ import {
   GET_BOARD_DETAIL_FAILURE,
   BOARD_DELETE_SUCCESS,
   BOARD_DELETE_FAILURE,
-  BOARD_DELETE_REQUEST
+  BOARD_DELETE_REQUEST,
+  BOARD_UPDATE_FAILURE,
+  BOARD_UPDATE_SUCCESS,
+  BOARD_UPDATE_REQUEST
 } from "../reducers/board";
 
 import { boardApi } from "../Api";
@@ -89,10 +92,33 @@ function* boardDelete(action) {
 function* watchBoardDelete() {
   yield takeLatest(BOARD_DELETE_REQUEST, boardDelete);
 }
+
+function* boardUpdateAPI(id) {
+  yield console.log("id : ", id);
+}
+
+function* boardUpdate(action) {
+  try {
+    yield call(boardUpdateAPI, action.id);
+    yield put({
+      type: BOARD_UPDATE_SUCCESS
+    });
+  } catch (e) {
+    yield put({
+      type: BOARD_UPDATE_FAILURE,
+      error: e
+    });
+  }
+}
+
+function* watchBoardUpdate() {
+  yield takeLatest(BOARD_UPDATE_REQUEST, boardUpdate);
+}
 export default function* boardSaga() {
   yield all([
     fork(watchGetBoardList),
     fork(watchGetBoardDetail),
-    fork(watchBoardDelete)
+    fork(watchBoardDelete),
+    fork(watchBoardUpdate)
   ]);
 }
