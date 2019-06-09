@@ -15,10 +15,13 @@ const Grid = styled.div`
   grid-gap: 25px;
 `;
 
-const Section = ({ children }) => (
-  <Container>
-    <Grid>{children}</Grid>
-  </Container>
-);
+const Section = ({ children, listFormCode }) =>
+  listFormCode === 1 ? (
+    <Container>
+      <Grid>{children}</Grid>
+    </Container>
+  ) : (
+    <Container>{children}</Container>
+  );
 
 export default Section;
