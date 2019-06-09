@@ -5,17 +5,12 @@ import { Redirect } from "react-router-dom";
 class BoardEtailContainer extends Component {
   state = {
     isUpdateForm: false,
-    title: this.props.boardResult ? this.props.boardResult.title : "",
-    description: this.props.boardResult
-      ? this.props.boardResult.description
-      : ""
+    title: "",
+    description: ""
   };
   componentDidMount() {
     const id = this.props.location.pathname.split("/")[3];
     this.props.getBoardDetail(id);
-  }
-  shouldComponentUpdate(nextProps, nextState) {
-    return nextProps.boardResult === this.props.boardResult;
   }
 
   onChangeInput = e => {
@@ -26,7 +21,9 @@ class BoardEtailContainer extends Component {
 
   loadUpdateForm = () => {
     this.setState({
-      isUpdateForm: !this.state.isUpdateForm
+      title: this.props.boardResult.title,
+      description: this.props.boardResult.description,
+      isUpdateForm: true
     });
   };
 
@@ -54,7 +51,8 @@ class BoardEtailContainer extends Component {
   };
   render() {
     const { isUpdateForm, title, description } = this.state;
-    const { boardResult, isDelete, isUpdate } = this.props;
+    const { boardResult, isDelete, isUpdate, loading } = this.props;
+    console.log(loading);
     const { updateFn } = this;
     if (isDelete || isUpdate) {
       return <Redirect to="/" />;
@@ -70,6 +68,7 @@ class BoardEtailContainer extends Component {
           title={title}
           description={description}
           updateFn={updateFn}
+          loading={loading}
         />
       );
     }

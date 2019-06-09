@@ -6,7 +6,15 @@ import rootSaga from "./sagas";
 
 const sagaMiddleware = createSagaMiddleware();
 const middlewares = [sagaMiddleware];
-const enhancer = compose(applyMiddleware(...middlewares));
+const enhancer =
+  process.env.NODE_ENV === "production"
+    ? compose(applyMiddleware(...middlewares))
+    : compose(
+        applyMiddleware(...middlewares),
+        window.__REDUX_DEVTOOLS_EXTENSION__ !== "undefined"
+          ? window.__REDUX_DEVTOOLS_EXTENSION__()
+          : f => f
+      );
 
 export default createStore(reducer, enhancer);
 sagaMiddleware.run(rootSaga);

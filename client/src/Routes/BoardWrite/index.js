@@ -1,7 +1,7 @@
 import BoardWriteContainer from "./BoardWriteContainer";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { boardUpload } from "../../../reducers/board";
+import { boardUpload } from "../../reducers/board";
 const mapStateToProps = state => ({
   title: state.btitle,
   description: state.board.description

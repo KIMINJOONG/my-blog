@@ -8,8 +8,8 @@ import {
 import Header from "../Components/Header";
 import Home from "../Routes/Home";
 import Board from "../Routes/Board";
-import BoardWrite from "../Routes/Board/BoardWrite";
-import BoardDetail from "../Routes/Board/BoardDetail";
+import BoardWrite from "../Routes//BoardWrite";
+import BoardDetail from "../Routes//BoardDetail";
 import store from "../store";
 import { Provider } from "react-redux";
 

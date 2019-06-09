@@ -1,4 +1,5 @@
 import React from "react";
+import Loader from "../../Components/Loader";
 const BoardDetailPresenter = ({
   boardResult,
   deleteFn,
@@ -8,10 +9,13 @@ const BoardDetailPresenter = ({
   onChangeInput,
   title,
   description,
-  updateFn
+  updateFn,
+  loading
 }) => (
   <div>
-    {isUpdateForm ? (
+    {loading ? (
+      <Loader />
+    ) : isUpdateForm ? (
       <form onSubmit={updateFn}>
         <input
           type="text"

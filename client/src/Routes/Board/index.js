@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { getBoardAction } from "../../reducers/board";
 import { bindActionCreators } from "redux";
 const mapStateToProps = state => ({
-  boardsList: state.board.boardsList
+  boardsList: state.board.boardsList,
+  loading: state.board.loading
 });
 
 const mapDispatchToProps = dispatch =>

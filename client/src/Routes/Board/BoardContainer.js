@@ -6,8 +6,8 @@ class BoardContainer extends Component {
     this.props.getBoardAction();
   }
   render() {
-    const { boardsList } = this.props;
-    return <BoardPresenter boardsResult={boardsList} />;
+    const { boardsList, loading } = this.props;
+    return <BoardPresenter boardsResult={boardsList} loading={loading} />;
   }
 }
 
