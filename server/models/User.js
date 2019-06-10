@@ -4,7 +4,7 @@ const UserSchema = new mongoose.Schema({
   id: {
     type: String
   },
-  pw: String,
+  password: String,
   createdAt: {
     type: Date,
     default: Date.now()

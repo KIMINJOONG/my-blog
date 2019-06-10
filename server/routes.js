@@ -7,13 +7,18 @@ const BOARDDETAIL = "/detail/:id";
 const BOARDDELETE = "/delete/:id";
 const BOARDUPDATE = "/update/:id";
 
+const USER = "/user";
+const USERJOIN = "/join";
+
 const routes = {
   board: BOARD,
   upload: UPLOAD,
   boardList: BOARDLIST,
   boardDetail: BOARDDETAIL,
   boardDelete: BOARDDELETE,
-  boardUpdate: BOARDUPDATE
+  boardUpdate: BOARDUPDATE,
+  user: USER,
+  userJoin: USERJOIN
 };
 
 export default routes;

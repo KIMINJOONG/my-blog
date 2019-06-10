@@ -14,3 +14,10 @@ export const boardApi = {
   delete: id => api.delete(`board/delete/${id}`),
   update: data => api.put(`board/update/${data.id}`, data)
 };
+
+export const userApi = {
+  join: data =>
+    api.post("user/join", {
+      data
+    })
+};

@@ -5,6 +5,7 @@ const BoardSchema = new mongoose.Schema({
     type: String
   },
   description: String,
+  category: Number,
   createdAt: {
     type: Date,
     default: Date.now()
