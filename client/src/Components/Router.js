@@ -13,6 +13,7 @@ import BoardDetail from "../Routes//BoardDetail";
 import store from "../store";
 import { Provider } from "react-redux";
 import UserJoin from "../Routes/UserJoin";
+import UserLogin from "../Routes/UserLogin";
 
 export default () => (
   <Provider store={store}>
@@ -25,6 +26,7 @@ export default () => (
           <Route path="/board/write" exact component={BoardWrite} />
           <Route path="/board/detail/:id" exact component={BoardDetail} />
           <Route path="/user/join" exact component={UserJoin} />
+          <Route path="/user/login" exact component={UserLogin} />
           <Redirect from="*" to="/" />
         </Switch>
       </>

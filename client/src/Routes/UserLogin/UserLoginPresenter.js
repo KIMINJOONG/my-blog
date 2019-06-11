@@ -5,15 +5,14 @@ const Container = styled.div``;
 const Form = styled.form``;
 const Input = styled.input``;
 const Button = styled.button``;
-
-const UserPresenter = ({ onChangeInput, onSubmitForm }) => (
+const UserLoginPresenter = ({ onChangeInput, onSubmitForm }) => (
   <Container>
     <Form onSubmit={onSubmitForm}>
       <Input name="id" onChange={onChangeInput} />
       <Input type="password" name="password" onChange={onChangeInput} />
-      <Button>가입</Button>
+      <Button>로그인</Button>
     </Form>
   </Container>
 );
 
-export default UserPresenter;
+export default UserLoginPresenter;

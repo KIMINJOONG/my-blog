@@ -19,5 +19,9 @@ export const userApi = {
   join: data =>
     api.post("user/join", {
       data
+    }),
+  login: data =>
+    api.post("user/login", {
+      data
     })
 };

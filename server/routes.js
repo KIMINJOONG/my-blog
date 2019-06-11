@@ -9,6 +9,7 @@ const BOARDUPDATE = "/update/:id";
 
 const USER = "/user";
 const USERJOIN = "/join";
+const USERLOGIN = "/login";
 
 const routes = {
   board: BOARD,
@@ -18,7 +19,8 @@ const routes = {
   boardDelete: BOARDDELETE,
   boardUpdate: BOARDUPDATE,
   user: USER,
-  userJoin: USERJOIN
+  userJoin: USERJOIN,
+  userLogin: USERLOGIN
 };
 
 export default routes;

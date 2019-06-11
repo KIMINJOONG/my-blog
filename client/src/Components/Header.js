@@ -36,6 +36,9 @@ export default withRouter(({ location: { pathname } }) => (
       <Item current={pathname === "/user/join"}>
         <SLink to="/user/join">join</SLink>
       </Item>
+      <Item current={pathname === "/user/login"}>
+        <SLink to="/user/login">login</SLink>
+      </Item>
     </List>
   </Header>
 ));

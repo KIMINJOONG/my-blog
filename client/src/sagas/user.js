@@ -2,17 +2,38 @@ import { call, put, all, fork, takeLatest } from "redux-saga/effects";
 import {
   USER_JOIN_REQUEST,
   USER_JOIN_SUCCESS,
-  USER_JOIN_FAILURE
+  USER_JOIN_FAILURE,
+  USER_LOGIN_REQUEST,
+  USER_LOGIN_FAILURE,
+  USER_LOGIN_SUCCESS
 } from "../reducers/user";
 import { userApi } from "../Api";
 
+function* userLoginAPI(data) {
+  const result = yield userApi.login(data);
+  return result.data;
+}
+function* userLogin(action) {
+  try {
+    const result = yield call(userLoginAPI, action.data);
+    yield put({
+      type: USER_LOGIN_SUCCESS,
+      isLogin: result
+    });
+  } catch (e) {
+    yield put({
+      type: USER_LOGIN_FAILURE
+    });
+  }
+}
+function* watchUserLogin() {
+  yield takeLatest(USER_LOGIN_REQUEST, userLogin);
+}
 function* userJoinAPI(data) {
-  console.log("saga", data);
   const result = yield userApi.join(data);
   return result;
 }
 function* userJoin(action) {
-  console.log("user join", action.data);
   try {
     yield call(userJoinAPI, action.data);
     yield put({
@@ -25,11 +46,9 @@ function* userJoin(action) {
   }
 }
 function* watchUserJoin() {
-  console.log("watch");
   yield takeLatest(USER_JOIN_REQUEST, userJoin);
 }
 
 export default function* userSaga() {
-  console.log("user saga");
-  yield all([fork(watchUserJoin)]);
+  yield all([fork(watchUserJoin), fork(watchUserLogin)]);
 }
