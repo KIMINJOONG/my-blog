@@ -6,14 +6,30 @@ import userRouter from "./routers/userRouter";
 import routes from "./routes";
 import cors from "cors";
 import bodyParser from "body-parser";
+import decodeJWT from "./utils/decodeJWT";
 
 const app = express();
-
+const jwt = async (req, res, next) => {
+  const token = req.get("X-JWT");
+  console.log(token);
+  if (toekn) {
+    const user = await decodeJWT(token);
+    if (user) {
+      req.user = user;
+    } else {
+      req.user = undefined;
+    }
+  } else {
+    netxt();
+  }
+  next();
+};
 app.use(helmet());
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev"));
+//app.use(jwt);
 
 app.use(routes.board, boardRouter);
 app.use(routes.user, userRouter);

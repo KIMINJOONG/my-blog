@@ -1,5 +1,6 @@
 import User from "../models/User";
 import { savePassword, comparePassword } from "../utils/password";
+import createJWT from "../utils/createJWT";
 
 export const postJoin = async (req, res) => {
   const {
@@ -23,5 +24,14 @@ export const postLogin = async (req, res) => {
   } = req;
   const user = await User.findOne({ id });
   const isLogin = await comparePassword(password, user.password);
-  res.status(200).json(isLogin);
+  if (isLogin) {
+    const token = createJWT(user.id);
+    return res.status(200).json({ token, ok: true, error: null });
+  } else {
+    return res.status(200).json({
+      token: null,
+      ok: false,
+      error: "패스워드를 잘못입력하셨습니다."
+    });
+  }
 };

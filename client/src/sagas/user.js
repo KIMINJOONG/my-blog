@@ -11,6 +11,7 @@ import { userApi } from "../Api";
 
 function* userLoginAPI(data) {
   const result = yield userApi.login(data);
+  console.log(result);
   return result.data;
 }
 function* userLogin(action) {
