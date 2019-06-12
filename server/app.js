@@ -7,11 +7,12 @@ import routes from "./routes";
 import cors from "cors";
 import bodyParser from "body-parser";
 import decodeJWT from "./utils/decodeJWT";
+import cookieParser from "cookie-parser";
+import session from "express-session";
 
 const app = express();
 const jwt = async (req, res, next) => {
   const token = req.get("X-JWT");
-  console.log(token);
   if (toekn) {
     const user = await decodeJWT(token);
     if (user) {
@@ -26,6 +27,7 @@ const jwt = async (req, res, next) => {
 };
 app.use(helmet());
 app.use(cors());
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev"));
