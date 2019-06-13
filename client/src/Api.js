@@ -9,10 +9,31 @@ export const boardApi = {
     api.post("board/upload", {
       data
     }),
-  getList: () => api.get("board/list"),
-  getDetail: id => api.get(`board/detail/${id}`),
-  delete: id => api.delete(`board/delete/${id}`),
-  update: data => api.put(`board/update/${data.id}`, data)
+  getList: () =>
+    api.get("board/list", {
+      headers: {
+        "X-JWT": "a"
+      }
+    }),
+  getDetail: id =>
+    api.get(`board/detail/${id}`, {
+      headers: {
+        "X-JWT": "a"
+      }
+    }),
+  delete: id =>
+    api.delete(`board/delete/${id}`, {
+      headers: {
+        "X-JWT": "a"
+      }
+    }),
+  update: data =>
+    api.put(`board/update/${data.id}`, {
+      data,
+      headers: {
+        "X-JWT": "a"
+      }
+    })
 };
 
 export const userApi = {
