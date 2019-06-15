@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:4000/"
+  baseURL: "http://localhost:4000/",
+  withCredentials: true
 });
 
 export const boardApi = {
@@ -11,28 +12,16 @@ export const boardApi = {
     }),
   getList: () =>
     api.get("board/list", {
-      headers: {
-        "X-JWT": "a"
-      }
     }),
   getDetail: id =>
     api.get(`board/detail/${id}`, {
-      headers: {
-        "X-JWT": "a"
-      }
     }),
   delete: id =>
     api.delete(`board/delete/${id}`, {
-      headers: {
-        "X-JWT": "a"
-      }
     }),
   update: data =>
     api.put(`board/update/${data.id}`, {
       data,
-      headers: {
-        "X-JWT": "a"
-      }
     })
 };
 
@@ -43,6 +32,7 @@ export const userApi = {
     }),
   login: data =>
     api.post("user/login", {
-      data
+      data,
+    
     })
 };

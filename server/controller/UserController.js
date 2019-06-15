@@ -26,6 +26,7 @@ export const postLogin = async (req, res) => {
   const isLogin = await comparePassword(password, user.password);
   if (isLogin) {
     const token = createJWT(user.id);
+    res.cookie("token", token);
     return res.status(200).json({ token, ok: true, error: null });
   } else {
     return res.status(200).json({
