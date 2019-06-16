@@ -14,6 +14,7 @@ import store from "../store";
 import { Provider } from "react-redux";
 import UserJoin from "../Routes/UserJoin";
 import UserLogin from "../Routes/UserLogin";
+import UserLogout from "../Routes/UserLogout"
 
 export default () => (
   <Provider store={store}>
@@ -27,6 +28,7 @@ export default () => (
           <Route path="/board/detail/:id" exact component={BoardDetail} />
           <Route path="/user/join" exact component={UserJoin} />
           <Route path="/user/login" exact component={UserLogin} />
+          <Route path="/user/logout" exact component={UserLogout} />
           <Redirect from="*" to="/" />
         </Switch>
       </>

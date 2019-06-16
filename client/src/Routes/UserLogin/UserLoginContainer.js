@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import UserLoginPresenter from "./UserLoginPresenter";
+import { Redirect } from "react-router-dom";
 
 export default class extends Component {
   state = {
@@ -21,11 +22,15 @@ export default class extends Component {
   };
   render() {
     const { onChangeInput, onSubmitForm } = this;
-    return (
-      <UserLoginPresenter
-        onChangeInput={onChangeInput}
-        onSubmitForm={onSubmitForm}
-      />
-    );
+    if(this.props.me) {
+      return <Redirect to="/" />
+    } else {
+      return (
+        <UserLoginPresenter
+          onChangeInput={onChangeInput}
+          onSubmitForm={onSubmitForm}
+        />
+      );
+    }
   }
 }

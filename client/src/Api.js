@@ -1,4 +1,5 @@
 import axios from "axios";
+import cookie from "react-cookies";
 
 const api = axios.create({
   baseURL: "http://localhost:4000/",
@@ -33,6 +34,11 @@ export const userApi = {
   login: data =>
     api.post("user/login", {
       data,
-    
+    }),
+    logout: () => 
+      api.post("user/logout", {
+        headers: {
+          "token" : cookie.load("token") || "" 
+        }
     })
 };

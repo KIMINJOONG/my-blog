@@ -1,16 +1,15 @@
-import UserLoginContainer from "./UserLoginContainer";
+import UserLogoutContainer from "./UserLooutContainer";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { userLogin } from "../../reducers/user";
+import { userLogout } from "../../reducers/user";
 
 const mapStateToProps = state => ({
-  isLogin: state.isLogin,
-  me: state.user.me
+  isLogout: state.isLogin,
 });
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ userLogin }, dispatch);
+  bindActionCreators({ userLogout }, dispatch);
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(UserLoginContainer);
+)(UserLogoutContainer);

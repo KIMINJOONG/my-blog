@@ -5,9 +5,35 @@ import {
   USER_JOIN_FAILURE,
   USER_LOGIN_REQUEST,
   USER_LOGIN_FAILURE,
-  USER_LOGIN_SUCCESS
+  USER_LOGIN_SUCCESS,
+  USER_LOGOUT_FAULURE,
+  USER_LOGOUT_SUCCESS,
+  USER_LOGOUT_REQUEST
 } from "../reducers/user";
 import { userApi } from "../Api";
+
+function* userLogoutAPI(){
+  const result = yield userApi.logout();
+  return result;
+}
+
+function* userLogout() {
+  try{
+    const result = yield call(userLogoutAPI);
+    yield put({
+      type: USER_LOGOUT_SUCCESS,
+      data: result
+    });
+  }catch(e){
+    yield put({
+      type: USER_LOGOUT_FAULURE,
+    });
+  }
+}
+
+function* watchUserLogout(){
+  yield takeLatest(USER_LOGOUT_REQUEST, userLogout);
+}
 
 function* userLoginAPI(data) {
   const result = yield userApi.login(data);
@@ -18,11 +44,11 @@ function* userLogin(action) {
     const result = yield call(userLoginAPI, action.data);
     yield put({
       type: USER_LOGIN_SUCCESS,
-      isLogin: result
+      data: result
     });
   } catch (e) {
     yield put({
-      type: USER_LOGIN_FAILURE
+      type: USER_LOGIN_FAILURE,
     });
   }
 }
@@ -35,9 +61,11 @@ function* userJoinAPI(data) {
 }
 function* userJoin(action) {
   try {
-    yield call(userJoinAPI, action.data);
+    const result = yield call(userJoinAPI, action.data);
+    console.log(result.data);
     yield put({
-      type: USER_JOIN_SUCCESS
+      type: USER_JOIN_SUCCESS,
+      result: result.data
     });
   } catch (e) {
     yield put({
@@ -50,5 +78,5 @@ function* watchUserJoin() {
 }
 
 export default function* userSaga() {
-  yield all([fork(watchUserJoin), fork(watchUserLogin)]);
+  yield all([fork(watchUserJoin), fork(watchUserLogin), fork(watchUserLogout)]);
 }

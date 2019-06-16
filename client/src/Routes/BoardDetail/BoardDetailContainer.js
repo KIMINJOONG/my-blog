@@ -52,7 +52,6 @@ class BoardEtailContainer extends Component {
   render() {
     const { isUpdateForm, title, description } = this.state;
     const { boardResult, isDelete, isUpdate, loading } = this.props;
-    console.log(loading);
     const { updateFn } = this;
     if (isDelete || isUpdate) {
       return <Redirect to="/" />;
