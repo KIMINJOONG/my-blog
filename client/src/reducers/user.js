@@ -1,7 +1,6 @@
 export const initialState = {
   isJoin: false,
   isLogin: false,
-  isLogout: false,
   error: "",
   me: null
 };
@@ -37,19 +36,19 @@ export default (state = initialState, action) => {
     case USER_LOGOUT_REQUEST: {
       return {
         ...state,
-        isLogout: false
+        isLogin: true
       }
     }
     case USER_LOGOUT_SUCCESS: {
       return {
         ...state,
-        isLogout: true
+        isLogin: false
       }
     }
     case USER_LOGOUT_FAULURE: {
       return {
         ...state,
-        isLogout: false
+        isLogin: true
       }
     }
     case USER_JOIN_REQUEST: {

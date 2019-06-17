@@ -13,7 +13,7 @@ import BoardDetail from "../Routes//BoardDetail";
 import store from "../store";
 import { Provider } from "react-redux";
 import UserJoin from "../Routes/UserJoin";
-import UserLogin from "../Routes/UserLogin";
+import AdminHome from "../Routes/AdminHome";
 import UserLogout from "../Routes/UserLogout"
 
 export default () => (
@@ -26,9 +26,9 @@ export default () => (
           <Route path="/board" exact component={Board} />
           <Route path="/board/write" exact component={BoardWrite} />
           <Route path="/board/detail/:id" exact component={BoardDetail} />
-          <Route path="/user/join" exact component={UserJoin} />
-          <Route path="/user/login" exact component={UserLogin} />
-          <Route path="/user/logout" exact component={UserLogout} />
+          <Route path="/admin/join" exact component={UserJoin} />
+          <Route path="/admin" exact component={AdminHome} />
+          <Route path="/admin/logout" exact component={UserLogout} />
           <Redirect from="*" to="/" />
         </Switch>
       </>

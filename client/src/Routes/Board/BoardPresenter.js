@@ -7,6 +7,7 @@ import Section from "../../Components/Section";
 import { Link } from "react-router-dom";
 import Loader from "../../Components/Loader";
 import BoardsList from "../../Components/BoardsList";
+import cookie from "react-cookies";
 
 const Container = styled.div``;
 const BoardWrite = styled(Link)`
@@ -20,7 +21,7 @@ const BoardPresenter = ({
   boardsResult,
   loading,
   listFormCode,
-  changeListForm
+  changeListForm,
 }) => (
   <>
     <Helmet>
@@ -31,7 +32,7 @@ const BoardPresenter = ({
     ) : (
       <Container>
         <ListHeader>
-          <BoardWrite to="/board/write">글쓰기</BoardWrite>
+          {cookie.load("token") && <BoardWrite to="/board/write">글쓰기</BoardWrite>}
           <button onClick={() => changeListForm(1)}>갤러리 형식</button>
           <button onClick={() => changeListForm(2)}>리스트 형식</button>
         </ListHeader>

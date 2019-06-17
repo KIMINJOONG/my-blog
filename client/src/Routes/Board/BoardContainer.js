@@ -3,7 +3,7 @@ import BoardPresenter from "./BoardPresenter";
 
 class BoardContainer extends Component {
   state = {
-    listFormCode: false
+    listFormCode: 1
   };
   componentDidMount() {
     this.props.getBoardAction();
@@ -17,13 +17,14 @@ class BoardContainer extends Component {
 
   render() {
     const { listFormCode } = this.state;
-    const { boardsList, loading } = this.props;
+    const { boardsList, loading, isLogin } = this.props;
     return (
       <BoardPresenter
         boardsResult={boardsList}
         loading={loading}
         listFormCode={listFormCode}
         changeListForm={this.changeListForm}
+        isLogin={isLogin}
       />
     );
   }

@@ -4,7 +4,8 @@ import { getBoardAction } from "../../reducers/board";
 import { bindActionCreators } from "redux";
 const mapStateToProps = state => ({
   boardsList: state.board.boardsList,
-  loading: state.board.loading
+  loading: state.board.loading,
+  isLogin: state.user.isLogin
 });
 
 const mapDispatchToProps = dispatch =>

@@ -1,4 +1,4 @@
-import UserLoginContainer from "./UserLoginContainer";
+import AdminHomeContainer from "./AdminHomeContainer";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { userLogin } from "../../reducers/user";
@@ -13,4 +13,4 @@ const mapDispatchToProps = dispatch =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(UserLoginContainer);
+)(AdminHomeContainer);
