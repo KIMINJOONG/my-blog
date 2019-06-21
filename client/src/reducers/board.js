@@ -70,7 +70,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        boardsList: action.payload.data,
+        boardsList: action.data,
         isDelete: false,
         isUpload: false,
         isUpdate: false
@@ -98,7 +98,7 @@ const reducer = (state = initialState, action) => {
     case GET_BOARD_DETAIL_SUCCESS: {
       return {
         ...state,
-        boardResult: action.payload.data,
+        boardResult: action.data,
         loading: false,
         isDelete: false,
         isUpload: false,

@@ -37,7 +37,7 @@ function* getBoardList() {
     const result = yield call(getBoardAPI);
     yield put({
       type: GET_BOARD_LIST_SUCCESS,
-      payload: result
+      data: result.data
     });
   } catch (e) {
     yield put({
@@ -59,7 +59,7 @@ function* getBoardDetail(action) {
     const result = yield call(getBoardDetailAPI, action.id);
     yield put({
       type: GET_BOARD_DETAIL_SUCCESS,
-      payload: result
+      data: result.data
     });
   } catch (e) {
     yield put({
@@ -82,7 +82,7 @@ function* boardDelete(action) {
     const result = yield call(boardDeleteAPI, action.id);
     yield put({
       type: BOARD_DELETE_SUCCESS,
-      payload: result
+      data: result.data
     });
   } catch (e) {
     yield put({

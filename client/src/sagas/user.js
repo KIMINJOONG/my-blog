@@ -22,7 +22,7 @@ function* userLogout() {
     const result = yield call(userLogoutAPI);
     yield put({
       type: USER_LOGOUT_SUCCESS,
-      data: result
+      data: result.data
     });
   }catch(e){
     yield put({
@@ -44,7 +44,7 @@ function* userLogin(action) {
     const result = yield call(userLoginAPI, action.data);
     yield put({
       type: USER_LOGIN_SUCCESS,
-      data: result
+      data: result.data
     });
   } catch (e) {
     yield put({
@@ -62,7 +62,6 @@ function* userJoinAPI(data) {
 function* userJoin(action) {
   try {
     const result = yield call(userJoinAPI, action.data);
-    console.log(result.data);
     yield put({
       type: USER_JOIN_SUCCESS,
       result: result.data
