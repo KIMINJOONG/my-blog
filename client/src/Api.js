@@ -40,5 +40,11 @@ export const userApi = {
         headers: {
           "token" : cookie.load("token") || "" 
         }
-    })
+    }),
+    loadUser: () =>
+      api.get('/', {
+        headers: {
+          'token' : cookie.load('token') || ''
+        }
+    }),
 };

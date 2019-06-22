@@ -1,8 +1,9 @@
 import User from "../models/User";
 import { savePassword, comparePassword } from "../utils/password";
 import createJWT from "../utils/createJWT";
+import decodeJWT from "../utils/decodeJWT";
 
-export const postJoin = async (req, res) => {
+export const userJoin = async (req, res) => {
   const {
     body: {
       data: { id, password }
@@ -21,7 +22,6 @@ export const postJoin = async (req, res) => {
 };
 
 export const postLogout = (req, res) => {
-  console.log("req", req);
   res.clearCookie("token")
   res.send("로그아웃 성공");
 }
@@ -37,9 +37,6 @@ export const postLogin = async (req, res) => {
   if (isLogin) {
     const token = createJWT(user.id);
     res.cookie("token", token);
-    req.user = user;
-    const filteredUser = Object.assign({}, user.toJSON());
-    delete filteredUser.password;
     return res.status(200).json({filteredUser});
   } else {
     return res.status(401).json({
@@ -49,3 +46,16 @@ export const postLogin = async (req, res) => {
     });
   }
 };
+
+export const loadUser = async (req, res) => {
+  const user = req.user;
+  if(user) {
+    const filteredUser = Object.assign({}, user.toJSON());
+    delete filteredUser.password;
+    console.log(filteredUser);
+    return res.json(filteredUser);
+  } else {
+    return res.status(401).send('로그인을 재시도하여주세요.');
+  }
+  
+}

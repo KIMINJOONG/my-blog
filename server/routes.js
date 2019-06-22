@@ -1,3 +1,6 @@
+// Home
+const HOME = '/';
+
 // Board
 
 const BOARD = "/board";
@@ -7,10 +10,12 @@ const BOARDDETAIL = "/detail/:id";
 const BOARDDELETE = "/delete/:id";
 const BOARDUPDATE = "/update/:id";
 
+// USER
 const USER = "/user";
 const USERJOIN = "/join";
 const USERLOGIN = "/login";
 const USERLOGOUT = '/logout';
+const LOADUSER = '/';
 
 const routes = {
   board: BOARD,
@@ -22,7 +27,9 @@ const routes = {
   user: USER,
   userJoin: USERJOIN,
   userLogin: USERLOGIN,
-  userLogout: USERLOGOUT
+  userLogout: USERLOGOUT,
+  loadUser: LOADUSER,
+  home: HOME
 };
 
 export default routes;

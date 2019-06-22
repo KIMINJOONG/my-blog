@@ -7,13 +7,14 @@ import {
   boardDelete,
   boardUpdate
 } from "../controller/BoardController";
+import { isLoggedIn } from "../utils/checkLogin";
 
 const boardRouter = express.Router();
 
-boardRouter.post(routes.upload, postUpload);
+boardRouter.post(routes.upload, isLoggedIn ,postUpload);
 boardRouter.get(routes.boardList, getList);
 boardRouter.get(routes.boardDetail, getDetail);
-boardRouter.delete(routes.boardDelete, boardDelete);
-boardRouter.put(routes.boardUpdate, boardUpdate);
+boardRouter.delete(routes.boardDelete, isLoggedIn, boardDelete);
+boardRouter.put(routes.boardUpdate, isLoggedIn, boardUpdate);
 
 export default boardRouter;

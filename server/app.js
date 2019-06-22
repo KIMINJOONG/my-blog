@@ -9,6 +9,7 @@ import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import expressSession from "express-session";
 import cookieParser from "cookie-parser";
+import homeRouter from "./routers/homeRouter";
 dotenv.config();
 const app = express();
 app.use(helmet());
@@ -33,7 +34,7 @@ app.use(
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
+app.use(routes.home, homeRouter);
 app.use(routes.board, boardRouter);
 app.use(routes.user, userRouter);
 
