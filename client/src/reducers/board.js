@@ -8,7 +8,12 @@ export const initialState = {
   isDelete: false,
   isUpload: false,
   isUpdate: false,
+  imagePaths: []
 };
+
+export const UPLOAD_IMAGES_REQUEST = 'UPLOAD_IMAGES_REQUEST';
+export const UPLOAD_IMAGES_SUCCESS = 'UPLOAD_IMAGES_SUCCESS';
+export const UPLOAD_IMAGES_FAILURE = 'UPLOAD_IMAGES_FAILURE';
 
 export const GET_BOARD_LIST_REQUEST = "GET_BOARD_LIST_REQUEST";
 export const GET_BOARD_LIST_SUCCESS = "GET_BOARD_LIST_SUCCESS";
@@ -35,6 +40,11 @@ export const SEARCH_BOARD_SUCCESS = 'SEARCH_BOARD_SUCCESS';
 export const SEARCH_BOARD_FAILURE = 'SEARCH_BOARD_FAILURE';
 
 //actions
+export const uploadImage = (images) => ({
+  type: UPLOAD_IMAGES_REQUEST,
+  data: images
+})
+
 export const searchBoard = (searchTerm) => ({
   type: SEARCH_BOARD_REQUEST,
   data: searchTerm
@@ -66,6 +76,23 @@ export const boardUpload = data => ({
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case UPLOAD_IMAGES_REQUEST: {
+      return {
+        ...state
+      }
+    }
+    case UPLOAD_IMAGES_SUCCESS: {
+      return {
+        ...state,
+        imagePaths: [...state.imagePaths, ...action.data]
+      }
+    }
+    case UPLOAD_IMAGES_FAILURE: {
+      return {
+        ...state,
+        error: '에러'
+      }
+    }
     case SEARCH_BOARD_REQUEST: {
       return {
         ...state,

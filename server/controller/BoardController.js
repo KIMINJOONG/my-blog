@@ -1,5 +1,8 @@
 import Board from "../models/Board";
 
+
+
+
 export const postUpload = async (req, res) => {
   const {
     body: {
@@ -52,3 +55,9 @@ export const boardUpdate = async (req, res) => {
   await Board.findOneAndUpdate({ _id: id }, { title, description });
   res.status(200).json("success");
 };
+
+
+export const uploadImages = async (req, res) => {
+  console.log(req.files);
+  res.json(req.files.map(v => v.filename));
+}

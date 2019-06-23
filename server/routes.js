@@ -10,6 +10,7 @@ const BOARDLIST = "/list";
 const BOARDDETAIL = "/detail/:id";
 const BOARDDELETE = "/delete/:id";
 const BOARDUPDATE = "/update/:id";
+const UPLOADIMAGES = '/board/images';
 
 // USER
 const USER = "/user";
@@ -26,6 +27,7 @@ const routes = {
   boardDetail: BOARDDETAIL,
   boardDelete: BOARDDELETE,
   boardUpdate: BOARDUPDATE,
+  uploadImages: UPLOADIMAGES,
   user: USER,
   userJoin: USERJOIN,
   userLogin: USERLOGIN,

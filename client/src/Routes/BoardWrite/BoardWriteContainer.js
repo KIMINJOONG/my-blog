@@ -20,11 +20,17 @@ class BoardWriteContainer extends Component {
   };
 
   onChangeImages = e => {
+    e.preventDefault();
     const imageFormData = new FormData();
     [].forEach.call(e.target.files, (f) => {
+      console.log('11111',imageFormData);
       imageFormData.append('image', f);
+      console.log('22222', imageFormData);
     });
-    //this.props.uploadImage(imageFormData);
+    const data = {
+      imageFormData
+    }
+    this.props.uploadImage(data);
   };
 
   onClickImageUpload = (e) => {
@@ -50,6 +56,7 @@ class BoardWriteContainer extends Component {
         onSubmitForm={this.onSubmitForm}
         onClickImageUpload={this.onClickImageUpload}
         imageInput={this.imageInput}
+        onChangeImages={this.onChangeImages}
       />
     );
   }

@@ -10,7 +10,8 @@ const BoardWritePresenter = ({
   onChangeInput,
   onSubmitForm,
   imageInput,
-  onClickImageUpload
+  onClickImageUpload,
+  onChangeImages
 }) => (
   <>
     <Helmet>게시글 쓰기 | kohubi's blog</Helmet>
@@ -34,6 +35,7 @@ const BoardWritePresenter = ({
           multiple
           hidden
           ref={imageInput}
+          onChange={onChangeImages}
         />
         <span>내용 : </span>
         <textarea

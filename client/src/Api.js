@@ -7,6 +7,12 @@ const api = axios.create({
 });
 
 export const boardApi = {
+  uploadImages: data =>
+    api.post('board/images', data, {
+      headers: {
+        'token' : cookie.load('token') || ''
+      }
+    }),
   upload: data =>
     api.post("board/upload", data, {
       headers: {

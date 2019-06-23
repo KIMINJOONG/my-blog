@@ -25,7 +25,10 @@ import {
   BOARD_UPLOAD_FAILURE,
   SEARCH_BOARD_SUCCESS,
   SEARCH_BOARD_FAILURE,
-  SEARCH_BOARD_REQUEST
+  SEARCH_BOARD_REQUEST,
+  UPLOAD_IMAGES_REQUEST,
+  UPLOAD_IMAGES_FAILURE,
+  UPLOAD_IMAGES_SUCCESS
 } from "../reducers/board";
 
 import { boardApi } from "../Api";
@@ -118,6 +121,10 @@ function* boardUpdate(action) {
   }
 }
 
+function* watchBoardUpdate() {
+  yield takeLatest(BOARD_UPDATE_REQUEST, boardUpdate);
+}
+
 function* boardUploadAPI(data) {
   const result = yield boardApi.upload(data);
   return result;
@@ -141,9 +148,7 @@ function* watchBoardUpload() {
   yield takeLatest(BOARD_UPLOAD_REQUEST, boardUpload);
 }
 
-function* watchBoardUpdate() {
-  yield takeLatest(BOARD_UPDATE_REQUEST, boardUpdate);
-}
+
 
 function searchBoardAPI(searchTerm) {
   const result =  boardApi.search(searchTerm);
@@ -164,10 +169,35 @@ function* searchBoard(action) {
     });
   }
 }
-
 function* watchSearchBoard() {
   yield takeLatest(SEARCH_BOARD_REQUEST, searchBoard);
 }
+
+function uploadImagesAPI(formData) {
+  console.log('api : ', formData);
+  const result = boardApi.upload(formData);
+  return result;
+}
+
+function* uploadImages(action) {
+  yield call(uploadImagesAPI, action.data);
+  try {
+    yield put({
+      type: UPLOAD_IMAGES_SUCCESS
+    });
+  } catch (e) {
+    yield put({
+      type: UPLOAD_IMAGES_FAILURE,
+      error: e
+    });
+  }
+}
+
+function* watchUploadImages() {
+  yield takeLatest(UPLOAD_IMAGES_REQUEST, uploadImages);
+}
+
+
 export default function* boardSaga() {
   yield all([
     fork(watchGetBoardList),
@@ -175,6 +205,7 @@ export default function* boardSaga() {
     fork(watchBoardDelete),
     fork(watchBoardUpdate),
     fork(watchBoardUpload),
-    fork(watchSearchBoard)
+    fork(watchSearchBoard),
+    fork(watchUploadImages)
   ]);
 }
