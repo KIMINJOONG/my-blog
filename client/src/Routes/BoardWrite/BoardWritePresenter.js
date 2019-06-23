@@ -8,18 +8,32 @@ const BoardWritePresenter = ({
   title,
   description,
   onChangeInput,
-  onSubmitForm
+  onSubmitForm,
+  imageInput,
+  onClickImageUpload
 }) => (
   <>
     <Helmet>게시글 쓰기 | kohubi's blog</Helmet>
     <Container>
-      <form name="boardForm" onSubmit={onSubmitForm}>
+      <form 
+        name="boardForm" 
+        onSubmit={onSubmitForm} 
+        encType="multipart/form-data"
+      >
         <span>제목 : </span>
         <input
           type="text"
           name="title"
           onChange={onChangeInput}
           value={title}
+        />
+        <button 
+          onClick={onClickImageUpload}>이미지 업로드</button>
+        <input
+          type="file"
+          multiple
+          hidden
+          ref={imageInput}
         />
         <span>내용 : </span>
         <textarea
