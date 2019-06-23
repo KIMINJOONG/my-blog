@@ -3,7 +3,8 @@ import BoardPresenter from "./BoardPresenter";
 
 class BoardContainer extends Component {
   state = {
-    listFormCode: 1
+    listFormCode: 1,
+    searchTerm: ''
   };
   componentDidMount() {
     this.props.getBoardAction();
@@ -15,9 +16,22 @@ class BoardContainer extends Component {
     });
   };
 
+  onSearchTextChange = e => {
+    this.setState({
+      searchTerm: e.target.value
+    });
+  };
+
+  onSubmitSearch = e => {
+    e.preventDefault();
+    const { searchTerm } = this.state;
+    this.props.searchBoard(searchTerm);
+  }
+
   render() {
     const { listFormCode } = this.state;
     const { boardsList, loading, isLogin } = this.props;
+    const { onSearchTextChange, onSubmitSearch } = this;
     return (
       <BoardPresenter
         boardsResult={boardsList}
@@ -25,6 +39,8 @@ class BoardContainer extends Component {
         listFormCode={listFormCode}
         changeListForm={this.changeListForm}
         isLogin={isLogin}
+        onSearchTextChange={ onSearchTextChange }
+        onSubmitSearch={ onSubmitSearch }  
       />
     );
   }

@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const Header = styled.div`
   background-color: #f8f8f8;
-  height: 120px;
+  height: 55px;
 `;
 
 const List = styled.ul``;

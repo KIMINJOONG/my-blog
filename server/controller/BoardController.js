@@ -1,7 +1,6 @@
 import Board from "../models/Board";
 
 export const postUpload = async (req, res) => {
-  console.log('req body ', req.body);
   const {
     body: {
       title,
@@ -14,6 +13,15 @@ export const postUpload = async (req, res) => {
   });
   res.status(200).json("success");
 };
+
+export const searchBoard = async (req, res) => {
+  const {
+    params: {searchTerm}
+  } = req;
+  console.log('searchTerm : ',searchTerm);
+  const boards = await Board.find({ title : searchTerm});
+  res.status(200).json(boards);
+}
 
 export const getList = async (req, res) => {
   const boards = await Board.find({});

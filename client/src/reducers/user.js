@@ -84,14 +84,13 @@ export default (state = initialState, action) => {
     case USER_LOGIN_SUCCESS: {
       return {
         ...state,
-        me: action.data.filteredUser,
-        error: ""
+        me: action.data,
       };
     }
     case USER_LOGIN_FAILURE: {
       return {
         ...state,
-        error: "에러"
+        error: action.data
       };
     }
     case LOAD_USER_DETAIL_REQUEST: {

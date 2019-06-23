@@ -5,6 +5,7 @@ const HOME = '/';
 
 const BOARD = "/board";
 const UPLOAD = "/upload";
+const SEARCH = '/search/:searchTerm';
 const BOARDLIST = "/list";
 const BOARDDETAIL = "/detail/:id";
 const BOARDDELETE = "/delete/:id";
@@ -20,6 +21,7 @@ const LOADUSER = '/';
 const routes = {
   board: BOARD,
   upload: UPLOAD,
+  search: SEARCH,
   boardList: BOARDLIST,
   boardDetail: BOARDDETAIL,
   boardDelete: BOARDDELETE,

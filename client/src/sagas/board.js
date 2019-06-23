@@ -22,7 +22,10 @@ import {
   BOARD_UPDATE_REQUEST,
   BOARD_UPLOAD_REQUEST,
   BOARD_UPLOAD_SUCCESS,
-  BOARD_UPLOAD_FAILURE
+  BOARD_UPLOAD_FAILURE,
+  SEARCH_BOARD_SUCCESS,
+  SEARCH_BOARD_FAILURE,
+  SEARCH_BOARD_REQUEST
 } from "../reducers/board";
 
 import { boardApi } from "../Api";
@@ -116,7 +119,6 @@ function* boardUpdate(action) {
 }
 
 function* boardUploadAPI(data) {
-  console.log(data);
   const result = yield boardApi.upload(data);
   return result;
 }
@@ -142,12 +144,37 @@ function* watchBoardUpload() {
 function* watchBoardUpdate() {
   yield takeLatest(BOARD_UPDATE_REQUEST, boardUpdate);
 }
+
+function searchBoardAPI(searchTerm) {
+  const result =  boardApi.search(searchTerm);
+  return result;
+}
+
+function* searchBoard(action) {
+  const result = yield call(searchBoardAPI, action.data);
+  try {
+    yield put({
+      type: SEARCH_BOARD_SUCCESS,
+      data: result.data
+    });
+  } catch (e) {
+    yield put({
+      type: SEARCH_BOARD_FAILURE,
+      error: e
+    });
+  }
+}
+
+function* watchSearchBoard() {
+  yield takeLatest(SEARCH_BOARD_REQUEST, searchBoard);
+}
 export default function* boardSaga() {
   yield all([
     fork(watchGetBoardList),
     fork(watchGetBoardDetail),
     fork(watchBoardDelete),
     fork(watchBoardUpdate),
-    fork(watchBoardUpload)
+    fork(watchBoardUpload),
+    fork(watchSearchBoard)
   ]);
 }

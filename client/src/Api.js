@@ -13,6 +13,8 @@ export const boardApi = {
         'token' : cookie.load('token') || ''
       },
     }),
+  search: searchTerm => 
+    api.get(`board/search/${searchTerm}`),
   getList: () =>
     api.get("board/list", {
     }),

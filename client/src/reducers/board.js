@@ -7,7 +7,7 @@ export const initialState = {
   boardResult: null,
   isDelete: false,
   isUpload: false,
-  isUpdate: false
+  isUpdate: false,
 };
 
 export const GET_BOARD_LIST_REQUEST = "GET_BOARD_LIST_REQUEST";
@@ -30,7 +30,16 @@ export const BOARD_UPDATE_REQUEST = "BOARD_UPDATE_REQUEST";
 export const BOARD_UPDATE_SUCCESS = "BOARD_UPDATE_SUCCESS";
 export const BOARD_UPDATE_FAILURE = "BOARD_UPDATE_FAILURE";
 
+export const SEARCH_BOARD_REQUEST = 'SEARCH_BOARD_REQUEST';
+export const SEARCH_BOARD_SUCCESS = 'SEARCH_BOARD_SUCCESS';
+export const SEARCH_BOARD_FAILURE = 'SEARCH_BOARD_FAILURE';
+
 //actions
+export const searchBoard = (searchTerm) => ({
+  type: SEARCH_BOARD_REQUEST,
+  data: searchTerm
+});
+
 export const getBoardAction = () => ({
   type: GET_BOARD_LIST_REQUEST
 });
@@ -57,6 +66,26 @@ export const boardUpload = data => ({
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case SEARCH_BOARD_REQUEST: {
+      return {
+        ...state,
+        loading: true
+      }
+    }
+    case SEARCH_BOARD_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        boardsList: action.data
+      }
+    }
+    case SEARCH_BOARD_FAILURE: {
+      return {
+        ...state,
+        loading: true,
+        error: '에러'
+      }
+    }
     case GET_BOARD_LIST_REQUEST: {
       return {
         ...state,

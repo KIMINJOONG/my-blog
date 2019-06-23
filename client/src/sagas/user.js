@@ -40,7 +40,7 @@ function* watchUserLogout(){
 
 function* userLoginAPI(data) {
   const result = yield userApi.login(data);
-  return result.data;
+  return result;
 }
 function* userLogin(action) {
   try {
@@ -52,6 +52,7 @@ function* userLogin(action) {
   } catch (e) {
     yield put({
       type: USER_LOGIN_FAILURE,
+      data: e
     });
   }
 }
