@@ -116,6 +116,7 @@ function* boardUpdate(action) {
 }
 
 function* boardUploadAPI(data) {
+  console.log(data);
   const result = yield boardApi.upload(data);
   return result;
 }

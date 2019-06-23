@@ -51,7 +51,7 @@ class BoardEtailContainer extends Component {
   };
   render() {
     const { isUpdateForm, title, description } = this.state;
-    const { boardResult, isDelete, isUpdate, loading } = this.props;
+    const { boardResult, isDelete, isUpdate, loading, me } = this.props;
     const { updateFn } = this;
     if (isDelete || isUpdate) {
       return <Redirect to="/" />;
@@ -68,6 +68,7 @@ class BoardEtailContainer extends Component {
           description={description}
           updateFn={updateFn}
           loading={loading}
+          me={me}
         />
       );
     }

@@ -1,6 +1,5 @@
 export const initialState = {
   isJoin: false,
-  isLogin: false,
   error: "",
   me: null,
 };
@@ -44,19 +43,17 @@ export default (state = initialState, action) => {
     case USER_LOGOUT_REQUEST: {
       return {
         ...state,
-        isLogin: true
       }
     }
     case USER_LOGOUT_SUCCESS: {
       return {
         ...state,
-        isLogin: false
+        me: null
       }
     }
     case USER_LOGOUT_FAULURE: {
       return {
         ...state,
-        isLogin: true
       }
     }
     case USER_JOIN_REQUEST: {
@@ -81,7 +78,6 @@ export default (state = initialState, action) => {
     case USER_LOGIN_REQUEST: {
       return {
         ...state,
-        isLogin: false,
         error: ""
       };
     }
@@ -89,14 +85,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         me: action.data.filteredUser,
-        isLogin: true,
         error: ""
       };
     }
     case USER_LOGIN_FAILURE: {
       return {
         ...state,
-        isLogin: false,
         error: "에러"
       };
     }

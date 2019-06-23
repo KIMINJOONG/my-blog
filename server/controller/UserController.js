@@ -21,7 +21,7 @@ export const userJoin = async (req, res) => {
   return res.status(200).json({ok : true});
 };
 
-export const postLogout = (req, res) => {
+export const userLogout = (req, res) => {
   res.clearCookie("token")
   res.send("로그아웃 성공");
 }
@@ -37,7 +37,9 @@ export const postLogin = async (req, res) => {
   if (isLogin) {
     const token = createJWT(user.id);
     res.cookie("token", token);
-    return res.status(200).json({filteredUser});
+    const filteredUser = Object.assign({}, user.toJSON());
+    delete filteredUser.password;
+    return res.status(200).json(filteredUser);
   } else {
     return res.status(401).json({
       token: null,
@@ -52,7 +54,6 @@ export const loadUser = async (req, res) => {
   if(user) {
     const filteredUser = Object.assign({}, user.toJSON());
     delete filteredUser.password;
-    console.log(filteredUser);
     return res.json(filteredUser);
   } else {
     return res.status(401).send('로그인을 재시도하여주세요.');

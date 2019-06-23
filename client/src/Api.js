@@ -8,8 +8,10 @@ const api = axios.create({
 
 export const boardApi = {
   upload: data =>
-    api.post("board/upload", {
-      data
+    api.post("board/upload", data, {
+      headers: {
+        'token' : cookie.load('token') || ''
+      },
     }),
   getList: () =>
     api.get("board/list", {
@@ -19,10 +21,15 @@ export const boardApi = {
     }),
   delete: id =>
     api.delete(`board/delete/${id}`, {
+      headers: {
+        'token' : cookie.load('token') || ''
+      },
     }),
   update: data =>
-    api.put(`board/update/${data.id}`, {
-      data,
+    api.put(`board/update/${data.id}`,data ,{
+      headers: {
+        'token' : cookie.load('token') || ''
+      },
     })
 };
 
@@ -36,9 +43,9 @@ export const userApi = {
       data,
     }),
     logout: () => 
-      api.post("user/logout", {
+      api.get("user/logout",{
         headers: {
-          "token" : cookie.load("token") || "" 
+          'token' : cookie.load('token') || ''
         }
     }),
     loadUser: () =>

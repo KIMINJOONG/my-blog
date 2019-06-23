@@ -6,7 +6,8 @@ const mapStateToProps = state => ({
   boardResult: state.board.boardResult,
   isDelete: state.board.isDelete,
   isUpdate: state.board.isUpdate,
-  loading: state.board.loading
+  loading: state.board.loading,
+  me: state.user.me
 });
 
 const mapDispatchToProps = dispatch =>

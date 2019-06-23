@@ -10,7 +10,8 @@ const BoardDetailPresenter = ({
   title,
   description,
   updateFn,
-  loading
+  loading,
+  me
 }) => (
   <div>
     {loading ? (
@@ -38,8 +39,15 @@ const BoardDetailPresenter = ({
           <p>{boardResult.title}</p>
           <p>{boardResult.description}</p>
           <p>{boardResult.createdAt}</p>
-          <button onClick={loadUpdateForm}>수정</button>
-          <button onClick={deleteFn}>삭제</button>
+          {
+            me && (
+              <div>
+                <button onClick={loadUpdateForm}>수정</button>
+                <button onClick={deleteFn}>삭제</button>
+              </div>
+              )
+          }
+          
         </div>
       )
     )}

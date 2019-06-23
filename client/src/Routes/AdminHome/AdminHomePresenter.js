@@ -1,17 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import {Link} from "react-router-dom";
-import cookies from "react-cookies";
 
 const Container = styled.div``;
 const Form = styled.form``;
 const Input = styled.input``;
 const Button = styled.button``;
 const SLink = styled(Link)``;
-const AdminHomePresenter = ({ onChangeInput, onSubmitForm, isLogin }) => (
+const AdminHomePresenter = ({ onChangeInput, onSubmitForm, me }) => (
   <Container>
     {
-      !isLogin && !cookies.load("token") ? (
+      !me ? (
         <>
           <Form onSubmit={onSubmitForm}>
             <Input name="id" onChange={onChangeInput} />
@@ -21,7 +20,11 @@ const AdminHomePresenter = ({ onChangeInput, onSubmitForm, isLogin }) => (
           <SLink to="/admin/join">회원가입</SLink>
         </>
       ) : (
-        <SLink to="/admin/logout">로그아웃</SLink>
+        <div>
+          <span>{ me.id }님 환영합니다.</span>
+          <SLink to="/admin/logout">로그아웃</SLink>
+        </div>
+        
       )
     }
     

@@ -6,6 +6,10 @@ export default class extends Component {
     id: "",
     password: ""
   };
+
+  componentDidMount(){
+    this.props.loadUser();
+  }
   onChangeInput = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -20,12 +24,13 @@ export default class extends Component {
     this.props.userLogin(data);
   };
   render() {
+    const { me } = this.props;
     const { onChangeInput, onSubmitForm } = this;
       return (
         <AdminHomePresenter
           onChangeInput={onChangeInput}
           onSubmitForm={onSubmitForm}
-          isLogin={this.props.isLogin}
+          me={ me }
         />
       );
   }
