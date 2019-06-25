@@ -2,10 +2,12 @@
 
 ##Pages:
 
-- [ ] Home
-- [ ] manageLogin
-- [ ] manageJoin
-- [ ] Search
-- [ ] Upload
-- [ ] Board Detail
-- [ ] Edit Board
+- [x] Home
+- [x] manageLogin
+- [x] manageJoin
+- [x] Search
+- [x] board Upload
+- [x] Board Detail
+- [x] Edit Board
+- [ ] images upload
+- [ ] use markdown edit
