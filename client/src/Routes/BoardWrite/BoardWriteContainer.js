@@ -20,14 +20,11 @@ class BoardWriteContainer extends Component {
 
   onChangeImages = e => {
     e.preventDefault();
-    let imageFormData = new FormData();
+    const imageFormData = new FormData();
     [].forEach.call(e.target.files, (f) => {
       imageFormData.append('image', f);
     });
-    const data = {
-      imageFormData
-    }
-    this.props.uploadImage(data);
+    this.props.uploadImage(imageFormData);
   };
 
   onClickImageUpload = (e) => {

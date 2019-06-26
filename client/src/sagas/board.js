@@ -174,8 +174,8 @@ function* watchSearchBoard() {
 }
 
 function uploadImagesAPI(formData) {
+  console.log(formData);
   const result = boardApi.uploadImages(formData);
-  console.log(result);
   return result;
 }
 

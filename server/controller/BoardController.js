@@ -56,8 +56,7 @@ export const boardUpdate = async (req, res) => {
 };
 
 
-export const uploadImages = async (req, res) => {
-  console.log('들어옴', req.files);
+export const uploadImages = (req, res) => {
   if(req.files) {
     return res.json(req.files.map(v => v.filename));
   }
