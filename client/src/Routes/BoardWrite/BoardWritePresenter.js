@@ -12,7 +12,8 @@ const BoardWritePresenter = ({
   imageInput,
   onClickImageUpload,
   onChangeImages,
-  imagePaths
+  imagePaths,
+  onClickImageDelete
 }) => (
   <>
     <Helmet>게시글 쓰기 | kohubi's blog</Helmet>
@@ -55,7 +56,7 @@ const BoardWritePresenter = ({
                 alt={v}
               />
               <div>
-                <button>제거</button>
+                <button onClick={onClickImageDelete(i)}>제거</button>
               </div>
             </div>
           );

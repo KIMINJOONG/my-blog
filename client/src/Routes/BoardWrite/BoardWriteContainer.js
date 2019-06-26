@@ -32,13 +32,19 @@ class BoardWriteContainer extends Component {
     this.imageInput.current.click();
   }
 
+  onClickImageDelete = (index) => () => {
+    this.props.deleteImage(index);
+  }
+
   onSubmitForm = e => {
     e.preventDefault();
     const data = {
       title: this.state.title,
-      description: this.state.description
+      description: this.state.description,
+      fileUrl: this.props.imagePaths
     };
-    this.props.boardUpload(data);
+    console.log(data);
+    //this.props.boardUpload(data);
   };
   render() {
     const { imagePaths } = this.props;
@@ -53,6 +59,7 @@ class BoardWriteContainer extends Component {
         imageInput={this.imageInput}
         onChangeImages={this.onChangeImages}
         imagePaths={imagePaths}
+        onClickImageDelete={this.onClickImageDelete}
       />
     );
   }

@@ -9,7 +9,13 @@ const BoardSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now()
-  }
+  },
+  images: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Image"
+    }
+  ]
 });
 
 const model = mongoose.model("Board", BoardSchema);

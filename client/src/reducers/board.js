@@ -10,6 +10,8 @@ export const UPLOAD_IMAGES_REQUEST = 'UPLOAD_IMAGES_REQUEST';
 export const UPLOAD_IMAGES_SUCCESS = 'UPLOAD_IMAGES_SUCCESS';
 export const UPLOAD_IMAGES_FAILURE = 'UPLOAD_IMAGES_FAILURE';
 
+export const DELETE_IMAGE = 'DELETE_IMAGE';
+
 export const GET_BOARD_LIST_REQUEST = "GET_BOARD_LIST_REQUEST";
 export const GET_BOARD_LIST_SUCCESS = "GET_BOARD_LIST_SUCCESS";
 export const GET_BOARD_LIST_FAILURE = "GET_BOARD_LIST_FAILURE";
@@ -38,7 +40,12 @@ export const SEARCH_BOARD_FAILURE = 'SEARCH_BOARD_FAILURE';
 export const uploadImage = (images) => ({
   type: UPLOAD_IMAGES_REQUEST,
   data: images
-})
+});
+
+export const deleteImage = (imageIndex) => ({
+  type: DELETE_IMAGE,
+  index: imageIndex
+});
 
 export const searchBoard = (searchTerm) => ({
   type: SEARCH_BOARD_REQUEST,
@@ -86,6 +93,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         error: action
+      }
+    }
+    case DELETE_IMAGE: {
+      return {
+        ...state,
+        imagePaths: state.imagePaths.filter((v, i) => i !== action.index)
       }
     }
     case SEARCH_BOARD_REQUEST: {
