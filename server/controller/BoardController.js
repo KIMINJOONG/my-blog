@@ -21,7 +21,6 @@ export const searchBoard = async (req, res) => {
   const {
     params: {searchTerm}
   } = req;
-  console.log('searchTerm : ',searchTerm);
   const boards = await Board.find({ title : searchTerm});
   res.status(200).json(boards);
 }
@@ -58,6 +57,9 @@ export const boardUpdate = async (req, res) => {
 
 
 export const uploadImages = async (req, res) => {
-  console.log(req.files);
-  res.json(req.files.map(v => v.filename));
+  console.log('들어옴', req.files);
+  if(req.files) {
+    return res.json(req.files.map(v => v.filename));
+  }
+  return res.status(404).send('파일이 존재하지 않습니다.');
 }

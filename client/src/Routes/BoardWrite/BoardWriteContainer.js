@@ -5,7 +5,6 @@ class BoardWriteContainer extends Component {
   constructor(props){
     super(props);
     this.imageInput = React.createRef();
-
   }
   state = {
     title: "",
@@ -21,11 +20,9 @@ class BoardWriteContainer extends Component {
 
   onChangeImages = e => {
     e.preventDefault();
-    const imageFormData = new FormData();
+    let imageFormData = new FormData();
     [].forEach.call(e.target.files, (f) => {
-      console.log('11111',imageFormData);
       imageFormData.append('image', f);
-      console.log('22222', imageFormData);
     });
     const data = {
       imageFormData

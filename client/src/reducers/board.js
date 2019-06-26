@@ -90,7 +90,7 @@ const reducer = (state = initialState, action) => {
     case UPLOAD_IMAGES_FAILURE: {
       return {
         ...state,
-        error: '에러'
+        error: action.error
       }
     }
     case SEARCH_BOARD_REQUEST: {

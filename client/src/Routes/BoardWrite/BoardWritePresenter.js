@@ -17,7 +17,6 @@ const BoardWritePresenter = ({
     <Helmet>게시글 쓰기 | kohubi's blog</Helmet>
     <Container>
       <form 
-        name="boardForm" 
         onSubmit={onSubmitForm} 
         encType="multipart/form-data"
       >

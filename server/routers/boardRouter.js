@@ -34,6 +34,6 @@ boardRouter.get(routes.boardList, getList);
 boardRouter.get(routes.boardDetail, getDetail);
 boardRouter.delete(routes.boardDelete, isLoggedIn, boardDelete);
 boardRouter.put(routes.boardUpdate, isLoggedIn, boardUpdate);
-boardRouter.post(routes.uploadImages, upload.array('image'), uploadImages);
+boardRouter.post(routes.uploadImages, upload.array('image') ,uploadImages);
 
 export default boardRouter;

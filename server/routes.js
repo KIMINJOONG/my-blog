@@ -10,7 +10,7 @@ const BOARDLIST = "/list";
 const BOARDDETAIL = "/detail/:id";
 const BOARDDELETE = "/delete/:id";
 const BOARDUPDATE = "/update/:id";
-const UPLOADIMAGES = '/board/images';
+const UPLOADIMAGES = '/images';
 
 // USER
 const USER = "/user";
