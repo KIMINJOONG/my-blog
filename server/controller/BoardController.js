@@ -57,8 +57,5 @@ export const boardUpdate = async (req, res) => {
 
 
 export const uploadImages = (req, res) => {
-  if(req.files) {
     return res.json(req.files.map(v => v.filename));
-  }
-  return res.status(404).send('파일이 존재하지 않습니다.');
 }

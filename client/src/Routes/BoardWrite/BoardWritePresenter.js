@@ -11,7 +11,8 @@ const BoardWritePresenter = ({
   onSubmitForm,
   imageInput,
   onClickImageUpload,
-  onChangeImages
+  onChangeImages,
+  imagePaths
 }) => (
   <>
     <Helmet>게시글 쓰기 | kohubi's blog</Helmet>
@@ -44,6 +45,22 @@ const BoardWritePresenter = ({
         />
         <button onClick={onSubmitForm}>등록</button>
       </form>
+      <div>
+        {imagePaths.map((v, i) => {
+          return (
+            <div key={v} style={{ display: "inline-block" }}>
+              <img
+                src={`http://localhost:4000/${v}`}
+                style={{ width: "200px" }}
+                alt={v}
+              />
+              <div>
+                <button>제거</button>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </Container>
   </>
 );

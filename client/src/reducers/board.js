@@ -1,14 +1,9 @@
 export const initialState = {
-  boardsList: null,
-  error: null,
+  boardsList: [],
+  imagePaths: [],
+  error: '',
   loading: false,
-  title: "",
-  description: "",
-  boardResult: null,
-  isDelete: false,
-  isUpload: false,
-  isUpdate: false,
-  imagePaths: []
+  boardResult: {},
 };
 
 export const UPLOAD_IMAGES_REQUEST = 'UPLOAD_IMAGES_REQUEST';
@@ -74,7 +69,7 @@ export const boardUpload = data => ({
   data
 });
 
-const reducer = (state = initialState, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case UPLOAD_IMAGES_REQUEST: {
       return {
@@ -84,8 +79,8 @@ const reducer = (state = initialState, action) => {
     case UPLOAD_IMAGES_SUCCESS: {
       return {
         ...state,
-        imagePaths: [...state.imagePaths, ...action.data]
-      }
+        imagePaths:  [...state.imagePaths, ...action.data]
+      };
     }
     case UPLOAD_IMAGES_FAILURE: {
       return {
@@ -117,19 +112,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
-        isDelete: false,
-        isUpload: false,
-        isUpdate: false
       };
     }
     case GET_BOARD_LIST_SUCCESS: {
       return {
         ...state,
         loading: false,
-        boardsList: action.data,
-        isDelete: false,
-        isUpload: false,
-        isUpdate: false
+        boardsList: action.data
       };
     }
     case GET_BOARD_LIST_FAILURE: {
@@ -137,18 +126,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         loading: true,
         error: "error",
-        isDelete: false,
-        isUpload: false,
-        isUpdate: false
       };
     }
     case GET_BOARD_DETAIL_REQUEST: {
       return {
         ...state,
         loading: true,
-        isDelete: false,
-        isUpload: false,
-        isUpdate: false
       };
     }
     case GET_BOARD_DETAIL_SUCCESS: {
@@ -156,37 +139,25 @@ const reducer = (state = initialState, action) => {
         ...state,
         boardResult: action.data,
         loading: false,
-        isDelete: false,
-        isUpload: false,
-        isUpdate: false
       };
     }
     case GET_BOARD_DETAIL_FAILURE: {
       return {
         ...state,
-        loading: true,
+        loading: false,
         error: "error",
-        isDelete: false,
-        isUpload: false,
-        isUpdate: false
       };
     }
     case BOARD_DELETE_REQUEST: {
       return {
         ...state,
-        loading: false,
-        isDelete: false,
-        isUpload: false,
-        isUpdate: false
+        loading: true,
       };
     }
     case BOARD_DELETE_SUCCESS: {
       return {
         ...state,
-        loading: true,
-        isDelete: true,
-        isUpload: false,
-        isUpdate: false
+        loading: false,
       };
     }
     case BOARD_DELETE_FAILURE: {
@@ -194,27 +165,18 @@ const reducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: "error",
-        isDelete: false,
-        isUpload: false,
-        isUpdate: false
       };
     }
     case BOARD_UPDATE_REQUEST: {
       return {
         ...state,
-        loading: false,
-        isUpdate: false,
-        isDelete: false,
-        isUpload: false
+        loading: true,
       };
     }
     case BOARD_UPDATE_SUCCESS: {
       return {
         ...state,
-        loading: true,
-        isUpdate: true,
-        isDelete: false,
-        isUpload: false
+        loading: false,
       };
     }
 
@@ -222,27 +184,18 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         error: "error",
-        isDelete: false,
-        isUpload: false,
-        isUpdate: false
       };
     }
     case BOARD_UPLOAD_REQUEST: {
       return {
         ...state,
-        loading: false,
-        isDelete: false,
-        isUpload: false,
-        isUpdate: false
+        loading: true,
       };
     }
     case BOARD_UPLOAD_SUCCESS: {
       return {
         ...state,
-        loading: true,
-        isDelete: false,
-        isUpload: true,
-        isUpdate: false
+        loading: false,
       };
     }
     case BOARD_UPLOAD_FAILURE: {
@@ -250,17 +203,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         error: "error",
         loading: false,
-        isDelete: false,
-        isUpload: false,
-        isUpdate: false
       };
     }
     default: {
       return {
-        state
+        ...state
       };
     }
   }
 };
 
-export default reducer;

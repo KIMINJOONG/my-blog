@@ -174,16 +174,16 @@ function* watchSearchBoard() {
 }
 
 function uploadImagesAPI(formData) {
-  console.log(formData);
   const result = boardApi.uploadImages(formData);
   return result;
 }
 
 function* uploadImages(action) {
-  yield call(uploadImagesAPI, action.data);
+  const result = yield call(uploadImagesAPI, action.data);
   try {
     yield put({
-      type: UPLOAD_IMAGES_SUCCESS
+      type: UPLOAD_IMAGES_SUCCESS,
+      data: result.data
     });
   } catch (e) {
     yield put({

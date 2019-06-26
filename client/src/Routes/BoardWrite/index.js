@@ -3,8 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { boardUpload, uploadImage } from "../../reducers/board";
 const mapStateToProps = state => ({
-  title: state.btitle,
-  description: state.board.description
+  imagePaths: state.board.imagePaths
 });
 
 const mapDispatchToProps = dispatch =>

@@ -41,6 +41,7 @@ class BoardWriteContainer extends Component {
     this.props.boardUpload(data);
   };
   render() {
+    const { imagePaths } = this.props;
     const { title, description } = this.state;
     return (
       <BoardWritePresenter
@@ -51,6 +52,7 @@ class BoardWriteContainer extends Component {
         onClickImageUpload={this.onClickImageUpload}
         imageInput={this.imageInput}
         onChangeImages={this.onChangeImages}
+        imagePaths={imagePaths}
       />
     );
   }
