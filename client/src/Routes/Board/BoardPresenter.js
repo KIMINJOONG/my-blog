@@ -52,6 +52,7 @@ const BoardPresenter = ({
                   title={result.title}
                   id={result._id}
                   createdAt={result.createdAt}
+                  images={result.images}
                 />
               ) : (
                 <BoardsList

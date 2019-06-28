@@ -7,7 +7,7 @@ const Container = styled.div`
 `;
 
 const Image = styled.div`
-  background-image: url(${props => props.bgUrl});
+  background-image: url('${props => props.bgUrl}');
   height: 180px;
   background-size: cover;
   border-radius: 4px;
@@ -25,11 +25,15 @@ const Title = styled.span`
   text-align: center;
 `;
 
-const Boards = ({ title, id }) => (
+const Boards = ({ title, id, images }) => (
   <Link to={`board/detail/${id}`}>
     <Container>
       <ImageContainer>
-        <Image bgUrl={require("../assets/noPosterSmall.png")} />
+        {
+          images && images[0] ? 
+            <Image bgUrl={`http://localhost:4000/${images[0].src}`} /> : 
+            <Image bgUrl={require("../assets/noPosterSmall.png")} />
+        }
       </ImageContainer>
       <Title>{title}</Title>
     </Container>

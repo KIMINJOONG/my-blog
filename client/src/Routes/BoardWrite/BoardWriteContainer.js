@@ -43,8 +43,7 @@ class BoardWriteContainer extends Component {
       description: this.state.description,
       fileUrl: this.props.imagePaths
     };
-    console.log(data);
-    //this.props.boardUpload(data);
+    this.props.boardUpload(data);
   };
   render() {
     const { imagePaths } = this.props;

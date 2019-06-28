@@ -40,6 +40,12 @@ const BoardDetailPresenter = ({
           <p>{boardResult.description}</p>
           <p>{boardResult.createdAt}</p>
           {
+            boardResult.images && 
+            boardResult.images.map((image, index) => (
+              <img key={index} src={`http://localhost:4000/${image.src}`} width="100px" alt={image.src} />
+            ))
+          }
+          {
             me && (
               <div>
                 <button onClick={loadUpdateForm}>수정</button>

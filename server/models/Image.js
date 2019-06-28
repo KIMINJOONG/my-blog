@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const Image = new mongoose.Schema({
+const ImageSchema = new mongoose.Schema({
   src: {
     type: String
   },
@@ -10,5 +10,5 @@ const Image = new mongoose.Schema({
     },
 });
 
-const model = mongoose.model("Image", BoardSchema);
+const model = mongoose.model("Image", ImageSchema);
 export default model;

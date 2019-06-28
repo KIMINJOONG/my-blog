@@ -1,4 +1,5 @@
 import Board from "../models/Board";
+import Image from "../models/Image";
 
 
 
@@ -7,14 +8,33 @@ export const postUpload = async (req, res) => {
   const {
     body: {
       title,
-      description
-    }
+      description,
+      fileUrl
+    },
   } = req;
-  await Board.create({
-    title,
-    description
-  });
-  res.status(200).json("success");
+  try{
+    const newBoard = await Board.create({
+      title,
+      description
+    });
+    if(fileUrl){
+      if(Array.isArray(fileUrl)){
+        fileUrl.map(async (image) => {
+          const newImage = await Image.create({ src : image });
+          newBoard.images.push(newImage.id);
+          newBoard.save();
+        });
+        
+      } else {
+        const image = await Image.create({ src: fileUrl });
+        console.log(image.id);
+      }
+    }
+    res.status(200).json('success');
+  }catch(e){
+    console.error(e);
+    next(e);
+  }
 };
 
 export const searchBoard = async (req, res) => {
@@ -26,7 +46,7 @@ export const searchBoard = async (req, res) => {
 }
 
 export const getList = async (req, res) => {
-  const boards = await Board.find({});
+  const boards = await Board.find({}).populate('images');
   res.send(boards);
 };
 
@@ -34,7 +54,7 @@ export const getDetail = async (req, res) => {
   const {
     params: { id }
   } = req;
-  const boardDetail = await Board.findById(id);
+  const boardDetail = await Board.findById(id).populate('images');
   res.status(200).json(boardDetail);
 };
 
