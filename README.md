@@ -32,18 +32,18 @@
 - 서버에서 멀티파일 업로드를 처리할때
 
 
-`
-    if(Array.isArray(fileUrl)){
-        const images = await Promise.all(fileUrl.map(async (image) => {
-          const newImage = await Image.create({ src : image });
-          newBoard.images.push(newImage.id);
-          return newImage
-        }));
-        if(images){
-          newBoard.save();
-        }
-      }
-`
+```
+if(Array.isArray(fileUrl)){
+const images = await Promise.all(fileUrl.map(async (image) => {
+    const newImage = await Image.create({ src : image });
+    newBoard.images.push(newImage.id);
+    return newImage
+}));
+if(images){
+    newBoard.save();
+}
+    }
+```
 
 - 이부분에서 newBoard에 이미지 objectid를 푸시해주어야하는데 Promise.all을 사용하지 않아서 map이 다 돌기도 전에 save함수가 실행이 되었다.
 스택에 쌓인게 먼저 실행되는게 당연한건데...자바스크립트는 기다리게 하지않으면 기다려 주지않는 언어라는걸 잊지말자!
