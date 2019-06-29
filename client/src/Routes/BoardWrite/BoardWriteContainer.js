@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import BoardWritePresenter from "./BoardWritePresenter";
+import EditorTemplate from "../../Components/editor/EditorTemplate";
+import EditorHeader from "../../Components/editor/EditorHeader";
+import EditorPane from "../../Components/editor/EditorPane";
+import EditorPreview from "../../Components/editor/EditorPreview";
 
 class BoardWriteContainer extends Component {
   constructor(props){
@@ -8,7 +12,22 @@ class BoardWriteContainer extends Component {
   }
   state = {
     title: "",
-    description: ""
+    description: "",
+    tt: '',
+    markdown: '',
+  };
+
+  handleChangeInput = ({ name, value }) => {
+      if(name === 'tt'){
+        this.setState({
+          tt: value
+        });
+      } else {
+        this.setState({
+          markdown: value
+        });
+      }
+        
   };
 
 
@@ -49,17 +68,24 @@ class BoardWriteContainer extends Component {
     const { imagePaths } = this.props;
     const { title, description } = this.state;
     return (
-      <BoardWritePresenter
-        title={title}
-        description={description}
-        onChangeInput={this.onChangeInput}
-        onSubmitForm={this.onSubmitForm}
-        onClickImageUpload={this.onClickImageUpload}
-        imageInput={this.imageInput}
-        onChangeImages={this.onChangeImages}
-        imagePaths={imagePaths}
-        onClickImageDelete={this.onClickImageDelete}
-      />
+      <>
+        <BoardWritePresenter
+          title={title}
+          description={description}
+          onChangeInput={this.onChangeInput}
+          onSubmitForm={this.onSubmitForm}
+          onClickImageUpload={this.onClickImageUpload}
+          imageInput={this.imageInput}
+          onChangeImages={this.onChangeImages}
+          imagePaths={imagePaths}
+          onClickImageDelete={this.onClickImageDelete}
+        />
+        <EditorTemplate 
+          header={<EditorHeader />}
+          editor={<EditorPane onChangeInput={this.handleChangeInput} titie={this.state.title} />}
+          preview={<EditorPreview title={this.state.tt} markdown={this.state.markdown}/>}
+        />
+      </>
     );
   }
 }
