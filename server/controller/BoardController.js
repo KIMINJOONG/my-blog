@@ -19,15 +19,18 @@ export const postUpload = async (req, res) => {
     });
     if(fileUrl){
       if(Array.isArray(fileUrl)){
-        fileUrl.map(async (image) => {
+        const images = await Promise.all(fileUrl.map(async (image) => {
           const newImage = await Image.create({ src : image });
           newBoard.images.push(newImage.id);
+          return newImage
+        }));
+        if(images){
           newBoard.save();
-        });
-        
+        }
       } else {
         const image = await Image.create({ src: fileUrl });
-        console.log(image.id);
+        newBoard.images.push(image.id);
+        newBoard.save();
       }
     }
     res.status(200).json('success');
