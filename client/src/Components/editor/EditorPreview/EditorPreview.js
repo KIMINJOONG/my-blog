@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import MarkdownRender from '../../Components/editor/MarkDownRender';
+import MarkdownRender from '../MarkDownRender';
 
 const EditorPreviewContainer = styled.div`
     flex: 1;
@@ -19,11 +19,21 @@ const Title = styled.h1`
 `;
 
 
-const EditorPreview = ({ markdown, title }) => (
+const EditorPreview = ({ markdown, title, boardResult }) => (
+  <>
+  {
+    boardResult ? 
+    <EditorPreviewContainer>
+    <Title>{boardResult.title}</Title>
+    <MarkdownRender markdown={boardResult.markdownContent} />
+  </EditorPreviewContainer>
+  :
   <EditorPreviewContainer>
     <Title>{title}</Title>
     <MarkdownRender markdown={markdown} />
   </EditorPreviewContainer>
+  }
+  </>
 );
 
 export default EditorPreview;

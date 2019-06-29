@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import BoardDetailPresenter from "./BoardDetailPresenter";
 import { Redirect } from "react-router-dom";
+import EdiotrPreview from '../../Components/editor/EditorPreview';
 
 class BoardEtailContainer extends Component {
   state = {
@@ -57,19 +58,22 @@ class BoardEtailContainer extends Component {
       return <Redirect to="/" />;
     } else {
       return (
-        <BoardDetailPresenter
-          boardResult={boardResult}
-          deleteFn={this.deleteFn}
-          loadUpdateForm={this.loadUpdateForm}
-          isUpdateForm={isUpdateForm}
-          cancelUpdateForm={this.cancelUpdateForm}
-          onChangeInput={this.onChangeInput}
-          title={title}
-          description={description}
-          updateFn={updateFn}
-          loading={loading}
-          me={me}
-        />
+        <>
+          <BoardDetailPresenter
+            boardResult={boardResult}
+            deleteFn={this.deleteFn}
+            loadUpdateForm={this.loadUpdateForm}
+            isUpdateForm={isUpdateForm}
+            cancelUpdateForm={this.cancelUpdateForm}
+            onChangeInput={this.onChangeInput}
+            title={title}
+            description={description}
+            updateFn={updateFn}
+            loading={loading}
+            me={me}
+          />
+          <EdiotrPreview />
+        </>
       );
     }
   }

@@ -32,12 +32,17 @@ const CodeEditor = styled.div`
     background: #4C4C4C;
     display: flex;
     flex-direction: column;
+    .CodeMirror {
+      font-size: 1rem;
+      flex: 1;
+      font-family: 'D2 Coding'
+    }
 `;
 
 class EditorPane extends Component {
     editor = null;
-  codeMirror = null;
-  cursor = null;
+    codeMirror = null;
+    cursor = null;
 
   initializeEditor = () => {
     this.codeMirror = CodeMirror(this.editor, {
@@ -84,7 +89,7 @@ class EditorPane extends Component {
 
       return (
         <EditorPaneContainer>
-          <TitleInput placeholder="제목 입력" name="tt" value={title} onChange={handleChange} />
+          <TitleInput placeholder="제목 입력" name="title" value={title} onChange={handleChange} />
           <CodeEditor ref={ref => this.editor=ref}></CodeEditor>
         </EditorPaneContainer>
       );

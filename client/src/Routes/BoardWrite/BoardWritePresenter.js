@@ -22,13 +22,6 @@ const BoardWritePresenter = ({
         onSubmit={onSubmitForm} 
         encType="multipart/form-data"
       >
-        <span>제목 : </span>
-        <input
-          type="text"
-          name="title"
-          onChange={onChangeInput}
-          value={title}
-        />
         <button 
           onClick={onClickImageUpload}>이미지 업로드</button>
         <input

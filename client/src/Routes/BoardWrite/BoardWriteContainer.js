@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import BoardWritePresenter from "./BoardWritePresenter";
 import EditorTemplate from "../../Components/editor/EditorTemplate";
-import EditorHeader from "../../Components/editor/EditorHeader";
 import EditorPane from "../../Components/editor/EditorPane";
 import EditorPreview from "../../Components/editor/EditorPreview";
 
@@ -11,23 +10,11 @@ class BoardWriteContainer extends Component {
     this.imageInput = React.createRef();
   }
   state = {
-    title: "",
     description: "",
-    tt: '',
-    markdown: '',
   };
 
   handleChangeInput = ({ name, value }) => {
-      if(name === 'tt'){
-        this.setState({
-          tt: value
-        });
-      } else {
-        this.setState({
-          markdown: value
-        });
-      }
-        
+      this.props.onChangeMarkdown(name, value);
   };
 
 
@@ -58,9 +45,10 @@ class BoardWriteContainer extends Component {
   onSubmitForm = e => {
     e.preventDefault();
     const data = {
-      title: this.state.title,
+      title: this.props.title,
       description: this.state.description,
-      fileUrl: this.props.imagePaths
+      fileUrl: this.props.imagePaths,
+      markdownContent: this.props.markdownContent
     };
     this.props.boardUpload(data);
   };
@@ -81,9 +69,8 @@ class BoardWriteContainer extends Component {
           onClickImageDelete={this.onClickImageDelete}
         />
         <EditorTemplate 
-          header={<EditorHeader />}
           editor={<EditorPane onChangeInput={this.handleChangeInput} titie={this.state.title} />}
-          preview={<EditorPreview title={this.state.tt} markdown={this.state.markdown}/>}
+          preview={<EditorPreview />}
         />
       </>
     );

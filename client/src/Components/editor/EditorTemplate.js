@@ -44,7 +44,7 @@ class EditorTemplate extends Component {
         window.addEventListener('mouseup', this.handleMouseUp);
       }
     render() {
-        const { header, editor, preview } = this.props;
+        const { editor, preview } = this.props;
         const { leftRatio } = this.state;
         const { handleDivideMouseDown } = this;
         const leftLand = { flex: leftRatio };
@@ -53,7 +53,6 @@ class EditorTemplate extends Component {
 
         return (
             <EditorContainer>
-                {header}
                 <Panes>
                     <Pane style={leftLand}>
                         {editor}

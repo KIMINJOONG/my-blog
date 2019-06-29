@@ -1,4 +1,6 @@
 export const initialState = {
+  title : '',
+  markdownContent: '',
   boardsList: [],
   imagePaths: [],
   error: '',
@@ -36,7 +38,15 @@ export const SEARCH_BOARD_REQUEST = 'SEARCH_BOARD_REQUEST';
 export const SEARCH_BOARD_SUCCESS = 'SEARCH_BOARD_SUCCESS';
 export const SEARCH_BOARD_FAILURE = 'SEARCH_BOARD_FAILURE';
 
+export const ON_CHANGE_MARKDOWN = 'ON_CHANGE_MARKDOWN';
+
 //actions
+export const onChangeMarkdown = (name, value) => ({
+  type: ON_CHANGE_MARKDOWN,
+  name,
+  value
+});
+
 export const uploadImage = (images) => ({
   type: UPLOAD_IMAGES_REQUEST,
   data: images
@@ -78,6 +88,19 @@ export const boardUpload = data => ({
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case ON_CHANGE_MARKDOWN: {
+      if(action.name === 'title'){
+        return {
+          ...state,
+          title: action.value
+        }
+      } else {
+        return {
+          ...state,
+          markdownContent: action.value
+        }
+      }
+    }
     case UPLOAD_IMAGES_REQUEST: {
       return {
         ...state

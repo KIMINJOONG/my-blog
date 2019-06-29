@@ -8,12 +8,6 @@ const Top = styled.div`
   margin-top: 50px;
 `;
 
-const Title = styled.span`
-  font-weight: 600;
-  font-size: 2.8em;
-  margin-bottom: 15px;
-`;
-
 const Date = styled.span`
   text-align: right;
   color: gray;
@@ -73,7 +67,6 @@ const BoardDetailPresenter = ({
       boardResult && (
         <div>
           <Top>
-            <Title>{boardResult.title}</Title>
             <Date>등록 날짜 : 
             {
               boardResult.createdAt  

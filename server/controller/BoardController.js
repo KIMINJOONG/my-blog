@@ -9,13 +9,15 @@ export const postUpload = async (req, res) => {
     body: {
       title,
       description,
-      fileUrl
+      fileUrl,
+      markdownContent
     },
   } = req;
   try{
     const newBoard = await Board.create({
       title,
-      description
+      description,
+      markdownContent
     });
     if(fileUrl){
       if(Array.isArray(fileUrl)){

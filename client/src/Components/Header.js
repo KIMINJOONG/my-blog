@@ -7,7 +7,10 @@ const Header = styled.div`
   height: 55px;
 `;
 
-const List = styled.ul``;
+const List = styled.ul`
+  padding: 0px;
+  margin: 0 0 0 10px;
+`;
 
 const Item = styled.li`
   width: 50px;
@@ -17,9 +20,11 @@ const Item = styled.li`
   text-align: center;
   color: ${props => (props.current ? "#333" : "#959595")};
   float: left;
-  margin-left: 30px;
+  margin: 0 10px 0 0;
   border-bottom: 3px solid ${props => (props.current ? "#333" : "transparent")};
   transition: border-bottom 0.5s ease-in-out;
+  list-style: none;
+  padding: 0px;
 `;
 
 const SLink = styled(Link)``;
