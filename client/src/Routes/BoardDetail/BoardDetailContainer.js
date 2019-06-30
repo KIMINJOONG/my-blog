@@ -14,6 +14,10 @@ class BoardEtailContainer extends Component {
     this.props.getBoardDetail(id);
   }
 
+  componentWillUnmount(){
+    this.props.cleanBoardDetail();
+  }
+
   onChangeInput = e => {
     this.setState({
       [e.target.name]: e.target.value

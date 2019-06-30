@@ -1,6 +1,6 @@
 import BoardDetailContainer from "./BoardDetailContainer";
 import { connect } from "react-redux";
-import { getBoardDetail, boardDelete, boardUpdate } from "../../reducers/board";
+import { getBoardDetail, boardDelete, boardUpdate, cleanBoardDetail } from "../../reducers/board";
 import { bindActionCreators } from "redux";
 const mapStateToProps = state => ({
   boardResult: state.board.boardResult,
@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ getBoardDetail, boardDelete, boardUpdate }, dispatch);
+  bindActionCreators({ getBoardDetail, boardDelete, boardUpdate, cleanBoardDetail }, dispatch);
 
 export default connect(
   mapStateToProps,

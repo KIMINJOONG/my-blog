@@ -5,7 +5,7 @@ export const initialState = {
   imagePaths: [],
   error: '',
   loading: false,
-  boardResult: {},
+  boardResult: null,
 };
 
 export const UPLOAD_IMAGES_REQUEST = 'UPLOAD_IMAGES_REQUEST';
@@ -39,6 +39,7 @@ export const SEARCH_BOARD_SUCCESS = 'SEARCH_BOARD_SUCCESS';
 export const SEARCH_BOARD_FAILURE = 'SEARCH_BOARD_FAILURE';
 
 export const ON_CHANGE_MARKDOWN = 'ON_CHANGE_MARKDOWN';
+export const CLEAN_BOARD_DETAIL = 'CLEAN_BOARD_DETAIL';
 
 //actions
 export const onChangeMarkdown = (name, value) => ({
@@ -46,6 +47,10 @@ export const onChangeMarkdown = (name, value) => ({
   name,
   value
 });
+
+export const cleanBoardDetail = () => ({
+  type: CLEAN_BOARD_DETAIL
+})
 
 export const uploadImage = (images) => ({
   type: UPLOAD_IMAGES_REQUEST,
@@ -99,6 +104,12 @@ export default (state = initialState, action) => {
           ...state,
           markdownContent: action.value
         }
+      }
+    }
+    case CLEAN_BOARD_DETAIL: {
+      return {
+        ...state,
+        boardResult: null
       }
     }
     case UPLOAD_IMAGES_REQUEST: {
