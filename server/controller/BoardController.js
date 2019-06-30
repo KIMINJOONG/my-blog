@@ -74,9 +74,9 @@ export const boardDelete = async (req, res) => {
 export const boardUpdate = async (req, res) => {
   const {
     params: { id },
-    body: { title, description }
+    body: { title, description, markdownContent }
   } = req;
-  await Board.findOneAndUpdate({ _id: id }, { title, description });
+  await Board.findOneAndUpdate({ _id: id }, { title, description, markdownContent });
   res.status(200).json("success");
 };
 

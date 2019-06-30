@@ -5,7 +5,6 @@ import Helmet from "react-helmet";
 const Container = styled.div``;
 
 const BoardWritePresenter = ({
-  title,
   description,
   onChangeInput,
   onSubmitForm,
@@ -13,7 +12,9 @@ const BoardWritePresenter = ({
   onClickImageUpload,
   onChangeImages,
   imagePaths,
-  onClickImageDelete
+  onClickImageDelete,
+  updateFn,
+  deleteFn
 }) => (
   <>
     <Helmet>게시글 쓰기 | kohubi's blog</Helmet>
@@ -37,6 +38,7 @@ const BoardWritePresenter = ({
           onChange={onChangeInput}
           value={description}
         />
+        <button onClick={updateFn}>수정</button>
         <button onClick={onSubmitForm}>등록</button>
       </form>
       <div>
@@ -54,6 +56,7 @@ const BoardWritePresenter = ({
             </div>
           );
         })}
+        <button onClick={deleteFn}>삭제</button>
       </div>
     </Container>
   </>

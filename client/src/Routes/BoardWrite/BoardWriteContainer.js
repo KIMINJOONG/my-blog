@@ -13,11 +13,6 @@ class BoardWriteContainer extends Component {
     description: "",
   };
 
-  handleChangeInput = ({ name, value }) => {
-      this.props.onChangeMarkdown(name, value);
-  };
-
-
   onChangeInput = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -52,9 +47,28 @@ class BoardWriteContainer extends Component {
     };
     this.props.boardUpload(data);
   };
+
+  deleteFn = () => {
+    const id = this.props.id
+    this.props.boardDelete(id);
+  };
+
+  updateFn = e => {
+    e.preventDefault();
+    const id = this.props.id
+    const { description } = this.state;
+    const data = {
+      title: this.props.title,
+      description,
+      markdownContent: this.props.markdownContent,
+      id
+    };
+    this.props.boardUpdate(data);
+  };
+
   render() {
-    const { imagePaths } = this.props;
-    const { title, description } = this.state;
+    const { imagePaths,title } = this.props;
+    const { description } = this.state;
     return (
       <>
         <BoardWritePresenter
@@ -67,9 +81,11 @@ class BoardWriteContainer extends Component {
           onChangeImages={this.onChangeImages}
           imagePaths={imagePaths}
           onClickImageDelete={this.onClickImageDelete}
+          deleteFn={this.deleteFn}
+          updateFn={this.updateFn}
         />
         <EditorTemplate 
-          editor={<EditorPane onChangeInput={this.handleChangeInput} titie={this.state.title} />}
+          editor={<EditorPane />}
           preview={<EditorPreview />}
         />
       </>

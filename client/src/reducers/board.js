@@ -40,9 +40,10 @@ export const SEARCH_BOARD_FAILURE = 'SEARCH_BOARD_FAILURE';
 
 export const ON_CHANGE_MARKDOWN = 'ON_CHANGE_MARKDOWN';
 export const CLEAN_BOARD_DETAIL = 'CLEAN_BOARD_DETAIL';
+export const UPDATE_FORM = 'UPDATE_FORM';
 
 //actions
-export const onChangeMarkdown = (name, value) => ({
+export const onChangeInput = (name, value) => ({
   type: ON_CHANGE_MARKDOWN,
   name,
   value
@@ -50,6 +51,12 @@ export const onChangeMarkdown = (name, value) => ({
 
 export const cleanBoardDetail = () => ({
   type: CLEAN_BOARD_DETAIL
+})
+
+export const updateForm = (title, markdownContent) => ({
+  type: UPDATE_FORM,
+  title,
+  markdownContent
 })
 
 export const uploadImage = (images) => ({
@@ -94,7 +101,7 @@ export const boardUpload = data => ({
 export default (state = initialState, action) => {
   switch (action.type) {
     case ON_CHANGE_MARKDOWN: {
-      if(action.name === 'title'){
+      if(action.name === "title"){
         return {
           ...state,
           title: action.value
@@ -109,6 +116,14 @@ export default (state = initialState, action) => {
     case CLEAN_BOARD_DETAIL: {
       return {
         ...state,
+        boardResult: null
+      }
+    }
+    case UPDATE_FORM: {
+      return {
+        ...state,
+        title: action.title,
+        markdownContent: action.markdownContent,
         boardResult: null
       }
     }

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import BoardDetailPresenter from "./BoardDetailPresenter";
-import { Redirect } from "react-router-dom";
 import EdiotrPreview from '../../Components/editor/EditorPreview';
+import BoardWrite from '../BoardWrite';
 
 class BoardEtailContainer extends Component {
   state = {
@@ -26,10 +26,10 @@ class BoardEtailContainer extends Component {
 
   loadUpdateForm = () => {
     this.setState({
-      title: this.props.boardResult.title,
       description: this.props.boardResult.description,
       isUpdateForm: true
     });
+    this.props.updateForm(this.props.boardResult.title, this.props.boardResult.markdownContent);
   };
 
   cancelUpdateForm = () => {
@@ -38,32 +38,16 @@ class BoardEtailContainer extends Component {
     });
   };
 
-  deleteFn = () => {
-    const id = this.props.location.pathname.split("/")[3];
-    this.props.boardDelete(id);
-  };
-
-  updateFn = e => {
-    e.preventDefault();
-    const id = this.props.location.pathname.split("/")[3];
-    const { title, description } = this.state;
-    const data = {
-      title,
-      description,
-      id
-    };
-    this.props.boardUpdate(data);
-  };
+  
   render() {
     const { isUpdateForm, title, description } = this.state;
-    const { boardResult, isDelete, isUpdate, loading, me } = this.props;
+    const { boardResult, loading, me } = this.props;
     const { updateFn } = this;
-    if (isDelete || isUpdate) {
-      return <Redirect to="/" />;
-    } else {
       return (
-        <>
-          <BoardDetailPresenter
+        <div>
+        { !isUpdateForm ?
+          <>
+            <BoardDetailPresenter
             boardResult={boardResult}
             deleteFn={this.deleteFn}
             loadUpdateForm={this.loadUpdateForm}
@@ -77,10 +61,14 @@ class BoardEtailContainer extends Component {
             me={me}
           />
           <EdiotrPreview />
-        </>
+          </>
+          :
+          <BoardWrite id={this.props.location.pathname.split("/")[3]}/>
+        }
+          
+        </div>
       );
     }
-  }
 }
 
 export default BoardEtailContainer;
