@@ -14,7 +14,6 @@ const BoardWritePresenter = ({
   imagePaths,
   onClickImageDelete,
   updateFn,
-  deleteFn
 }) => (
   <>
     <Helmet>게시글 쓰기 | kohubi's blog</Helmet>
@@ -56,7 +55,6 @@ const BoardWritePresenter = ({
             </div>
           );
         })}
-        <button onClick={deleteFn}>삭제</button>
       </div>
     </Container>
   </>

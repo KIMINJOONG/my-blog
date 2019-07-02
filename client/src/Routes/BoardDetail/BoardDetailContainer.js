@@ -38,25 +38,29 @@ class BoardEtailContainer extends Component {
     });
   };
 
+  deleteFn = () => {
+    const id = this.props.location.pathname.split("/")[3];
+    this.props.boardDelete(id);
+  };
+
   
   render() {
     const { isUpdateForm, title, description } = this.state;
     const { boardResult, loading, me } = this.props;
-    const { updateFn } = this;
+    const { deleteFn } = this;
       return (
         <div>
         { !isUpdateForm ?
           <>
             <BoardDetailPresenter
             boardResult={boardResult}
-            deleteFn={this.deleteFn}
+            deleteFn={deleteFn}
             loadUpdateForm={this.loadUpdateForm}
             isUpdateForm={isUpdateForm}
             cancelUpdateForm={this.cancelUpdateForm}
             onChangeInput={this.onChangeInput}
             title={title}
             description={description}
-            updateFn={updateFn}
             loading={loading}
             me={me}
           />

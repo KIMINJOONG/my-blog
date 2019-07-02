@@ -48,10 +48,6 @@ class BoardWriteContainer extends Component {
     this.props.boardUpload(data);
   };
 
-  deleteFn = () => {
-    const id = this.props.id
-    this.props.boardDelete(id);
-  };
 
   updateFn = e => {
     e.preventDefault();
@@ -81,7 +77,6 @@ class BoardWriteContainer extends Component {
           onChangeImages={this.onChangeImages}
           imagePaths={imagePaths}
           onClickImageDelete={this.onClickImageDelete}
-          deleteFn={this.deleteFn}
           updateFn={this.updateFn}
         />
         <EditorTemplate 

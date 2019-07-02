@@ -41,7 +41,7 @@ const BoardDetailPresenter = ({
   description,
   updateFn,
   loading,
-  me
+  me,
 }) => (
   <div>
     {loading ? (
