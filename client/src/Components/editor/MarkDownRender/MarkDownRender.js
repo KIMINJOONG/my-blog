@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import marked from 'marked';
-import styled from 'styled-components';
 
 import Prism from 'prismjs';
 import 'prismjs/themes/prism-okaidia.css';
@@ -9,8 +8,6 @@ import 'prismjs/components/prism-javascript.min.js';
 import 'prismjs/components/prism-jsx.min.js';
 import 'prismjs/components/prism-css.min.js';
 
-const MarkdownRenderContainer = styled.div`
-`;
 class MarkdownRender extends Component {
   state = { html: '' };
 
@@ -58,7 +55,7 @@ class MarkdownRender extends Component {
     const markup = { __html: html };
 
     return (
-      <MarkdownRenderContainer
+      <div
         className="markdown-render"
         dangerouslySetInnerHTML={markup}
       />
