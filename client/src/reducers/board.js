@@ -1,3 +1,5 @@
+import produce from 'immer';
+
 export const initialState = {
   title : '',
   markdownContent: '',
@@ -99,179 +101,172 @@ export const boardUpload = data => ({
 });
 
 export default (state = initialState, action) => {
-  switch (action.type) {
-    case ON_CHANGE_MARKDOWN: {
-      if(action.name === "title"){
+  return produce(state, (draft) => {
+    switch (action.type) {
+      case ON_CHANGE_MARKDOWN: {
+        if(action.name === "title"){
+          return {
+            ...state,
+            title: action.value
+          }
+        } else {
+          return {
+            ...state,
+            markdownContent: action.value
+          }
+        }
+      }
+      case CLEAN_BOARD_DETAIL: {
         return {
           ...state,
-          title: action.value
+          boardResult: null
         }
-      } else {
+      }
+      case UPDATE_FORM: {
         return {
           ...state,
-          markdownContent: action.value
+          title: action.title,
+          markdownContent: action.markdownContent,
+          boardResult: null
         }
       }
-    }
-    case CLEAN_BOARD_DETAIL: {
-      return {
-        ...state,
-        boardResult: null
+      case UPLOAD_IMAGES_REQUEST: {
+        return {
+          ...state
+        }
+      }
+      case UPLOAD_IMAGES_SUCCESS: {
+        return {
+          ...state,
+          imagePaths:  [...state.imagePaths, ...action.data]
+        };
+      }
+      case UPLOAD_IMAGES_FAILURE: {
+        return {
+          ...state,
+          error: action
+        }
+      }
+      case DELETE_IMAGE: {
+        return {
+          ...state,
+          imagePaths: state.imagePaths.filter((v, i) => i !== action.index)
+        }
+      }
+      case SEARCH_BOARD_REQUEST: {
+        return {
+          ...state,
+          loading: true
+        }
+      }
+      case SEARCH_BOARD_SUCCESS: {
+        return {
+          ...state,
+          loading: false,
+          boardsList: action.data
+        }
+      }
+      case SEARCH_BOARD_FAILURE: {
+        return {
+          ...state,
+          loading: true,
+          error: '에러'
+        }
+      }
+      case GET_BOARD_LIST_REQUEST: {
+        return {
+          ...state,
+          loading: true,
+        };
+      }
+      case GET_BOARD_LIST_SUCCESS: {
+        return {
+          ...state,
+          loading: false,
+          boardsList: action.data
+        };
+      }
+      case GET_BOARD_LIST_FAILURE: {
+        return {
+          ...state,
+          loading: true,
+          error: "error",
+        };
+      }
+      case GET_BOARD_DETAIL_REQUEST: {
+        break;
+      }
+      case GET_BOARD_DETAIL_SUCCESS: {
+        draft.boardResult = action.data
+        break;
+      }
+      case GET_BOARD_DETAIL_FAILURE: {
+        break;
+      }
+      case BOARD_DELETE_REQUEST: {
+        return {
+          ...state,
+          loading: true,
+        };
+      }
+      case BOARD_DELETE_SUCCESS: {
+        return {
+          ...state,
+          loading: false,
+        };
+      }
+      case BOARD_DELETE_FAILURE: {
+        return {
+          ...state,
+          loading: false,
+          error: "error",
+        };
+      }
+      case BOARD_UPDATE_REQUEST: {
+        return {
+          ...state,
+          loading: true,
+        };
+      }
+      case BOARD_UPDATE_SUCCESS: {
+        return {
+          ...state,
+          loading: false,
+        };
+      }
+  
+      case BOARD_UPDATE_FAILURE: {
+        return {
+          ...state,
+          error: "error",
+        };
+      }
+      case BOARD_UPLOAD_REQUEST: {
+        return {
+          ...state,
+          loading: true,
+        };
+      }
+      case BOARD_UPLOAD_SUCCESS: {
+        return {
+          ...state,
+          loading: false,
+        };
+      }
+      case BOARD_UPLOAD_FAILURE: {
+        return {
+          ...state,
+          error: "error",
+          loading: false,
+        };
+      }
+      default: {
+        return {
+          ...state
+        };
       }
     }
-    case UPDATE_FORM: {
-      return {
-        ...state,
-        title: action.title,
-        markdownContent: action.markdownContent,
-        boardResult: null
-      }
-    }
-    case UPLOAD_IMAGES_REQUEST: {
-      return {
-        ...state
-      }
-    }
-    case UPLOAD_IMAGES_SUCCESS: {
-      return {
-        ...state,
-        imagePaths:  [...state.imagePaths, ...action.data]
-      };
-    }
-    case UPLOAD_IMAGES_FAILURE: {
-      return {
-        ...state,
-        error: action
-      }
-    }
-    case DELETE_IMAGE: {
-      return {
-        ...state,
-        imagePaths: state.imagePaths.filter((v, i) => i !== action.index)
-      }
-    }
-    case SEARCH_BOARD_REQUEST: {
-      return {
-        ...state,
-        loading: true
-      }
-    }
-    case SEARCH_BOARD_SUCCESS: {
-      return {
-        ...state,
-        loading: false,
-        boardsList: action.data
-      }
-    }
-    case SEARCH_BOARD_FAILURE: {
-      return {
-        ...state,
-        loading: true,
-        error: '에러'
-      }
-    }
-    case GET_BOARD_LIST_REQUEST: {
-      return {
-        ...state,
-        loading: true,
-      };
-    }
-    case GET_BOARD_LIST_SUCCESS: {
-      return {
-        ...state,
-        loading: false,
-        boardsList: action.data
-      };
-    }
-    case GET_BOARD_LIST_FAILURE: {
-      return {
-        ...state,
-        loading: true,
-        error: "error",
-      };
-    }
-    case GET_BOARD_DETAIL_REQUEST: {
-      return {
-        ...state,
-        loading: true,
-      };
-    }
-    case GET_BOARD_DETAIL_SUCCESS: {
-      return {
-        ...state,
-        boardResult: action.data,
-        loading: false,
-      };
-    }
-    case GET_BOARD_DETAIL_FAILURE: {
-      return {
-        ...state,
-        loading: false,
-        error: "error",
-      };
-    }
-    case BOARD_DELETE_REQUEST: {
-      return {
-        ...state,
-        loading: true,
-      };
-    }
-    case BOARD_DELETE_SUCCESS: {
-      return {
-        ...state,
-        loading: false,
-      };
-    }
-    case BOARD_DELETE_FAILURE: {
-      return {
-        ...state,
-        loading: false,
-        error: "error",
-      };
-    }
-    case BOARD_UPDATE_REQUEST: {
-      return {
-        ...state,
-        loading: true,
-      };
-    }
-    case BOARD_UPDATE_SUCCESS: {
-      return {
-        ...state,
-        loading: false,
-      };
-    }
-
-    case BOARD_UPDATE_FAILURE: {
-      return {
-        ...state,
-        error: "error",
-      };
-    }
-    case BOARD_UPLOAD_REQUEST: {
-      return {
-        ...state,
-        loading: true,
-      };
-    }
-    case BOARD_UPLOAD_SUCCESS: {
-      return {
-        ...state,
-        loading: false,
-      };
-    }
-    case BOARD_UPLOAD_FAILURE: {
-      return {
-        ...state,
-        error: "error",
-        loading: false,
-      };
-    }
-    default: {
-      return {
-        ...state
-      };
-    }
-  }
+  });
+  
 };
 

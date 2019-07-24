@@ -13,7 +13,11 @@ export default ({ me }) => (
                     <SLink to="/admin/logout">로그아웃</SLink>
                 </div>)
                 : 
-                <p>춤추는 개발자의 블로그입니다.</p>
+                <div>
+                    <p>춤추는 개발자의 블로그입니다.</p>
+                    <SLink to="/admin">로그인</SLink>
+                </div>
+                
         }
     </div>
 );

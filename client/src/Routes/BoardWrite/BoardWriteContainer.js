@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 import BoardWritePresenter from "./BoardWritePresenter";
-import EditorTemplate from "../../Components/editor/EditorTemplate";
-import EditorPane from "../../Components/editor/EditorPane";
-import EditorPreview from "../../Components/editor/EditorPreview";
 
 class BoardWriteContainer extends Component {
   constructor(props){
@@ -78,10 +75,6 @@ class BoardWriteContainer extends Component {
           imagePaths={imagePaths}
           onClickImageDelete={this.onClickImageDelete}
           updateFn={this.updateFn}
-        />
-        <EditorTemplate 
-          editor={<EditorPane />}
-          preview={<EditorPreview />}
         />
       </>
     );
