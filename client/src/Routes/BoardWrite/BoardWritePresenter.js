@@ -1,19 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 import Helmet from "react-helmet";
+import EditorPane from '../../Components/editor/editorPane';
 
-const Container = styled.div``;
+const Container = styled.div`
+
+`;
+
+
 
 const BoardWritePresenter = ({
-  description,
-  onChangeInput,
   onSubmitForm,
   imageInput,
   onClickImageUpload,
   onChangeImages,
   imagePaths,
-  onClickImageDelete,
-  updateFn,
 }) => (
   <>
     <Helmet>게시글 쓰기 | kohubi's blog</Helmet>
@@ -31,13 +32,7 @@ const BoardWritePresenter = ({
           ref={imageInput}
           onChange={onChangeImages}
         />
-        <span>내용 : </span>
-        <textarea
-          name="description"
-          onChange={onChangeInput}
-          value={description}
-        />
-        <button onClick={updateFn}>수정</button>
+        <EditorPane />
         <button onClick={onSubmitForm}>등록</button>
       </form>
       <div>
@@ -49,9 +44,6 @@ const BoardWritePresenter = ({
                 style={{ width: "200px" }}
                 alt={v}
               />
-              <div>
-                <button onClick={onClickImageDelete(i)}>제거</button>
-              </div>
             </div>
           );
         })}

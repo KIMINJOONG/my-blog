@@ -1,7 +1,6 @@
 import User from "../models/User";
 import { savePassword, comparePassword } from "../utils/password";
 import createJWT from "../utils/createJWT";
-import decodeJWT from "../utils/decodeJWT";
 
 export const userJoin = async (req, res) => {
   const {

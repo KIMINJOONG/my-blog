@@ -6,9 +6,6 @@ class BoardWriteContainer extends Component {
     super(props);
     this.imageInput = React.createRef();
   }
-  state = {
-    description: "",
-  };
 
   onChangeInput = e => {
     this.setState({
@@ -45,36 +42,17 @@ class BoardWriteContainer extends Component {
     this.props.boardUpload(data);
   };
 
-
-  updateFn = e => {
-    e.preventDefault();
-    const id = this.props.id
-    const { description } = this.state;
-    const data = {
-      title: this.props.title,
-      description,
-      markdownContent: this.props.markdownContent,
-      id
-    };
-    this.props.boardUpdate(data);
-  };
-
   render() {
-    const { imagePaths,title } = this.props;
-    const { description } = this.state;
+    const { imagePaths } = this.props;
     return (
       <>
         <BoardWritePresenter
-          title={title}
-          description={description}
           onChangeInput={this.onChangeInput}
           onSubmitForm={this.onSubmitForm}
           onClickImageUpload={this.onClickImageUpload}
           imageInput={this.imageInput}
           onChangeImages={this.onChangeImages}
           imagePaths={imagePaths}
-          onClickImageDelete={this.onClickImageDelete}
-          updateFn={this.updateFn}
         />
       </>
     );
