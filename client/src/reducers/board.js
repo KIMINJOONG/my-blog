@@ -2,7 +2,7 @@ import produce from 'immer';
 
 export const initialState = {
   title : '',
-  markdownContent: '',
+  content: '',
   boardsList: [],
   imagePaths: [],
   error: '',
@@ -40,16 +40,10 @@ export const SEARCH_BOARD_REQUEST = 'SEARCH_BOARD_REQUEST';
 export const SEARCH_BOARD_SUCCESS = 'SEARCH_BOARD_SUCCESS';
 export const SEARCH_BOARD_FAILURE = 'SEARCH_BOARD_FAILURE';
 
-export const ON_CHANGE_MARKDOWN = 'ON_CHANGE_MARKDOWN';
 export const CLEAN_BOARD_DETAIL = 'CLEAN_BOARD_DETAIL';
 export const UPDATE_FORM = 'UPDATE_FORM';
 
 //actions
-export const onChangeInput = (name, value) => ({
-  type: ON_CHANGE_MARKDOWN,
-  name,
-  value
-});
 
 export const cleanBoardDetail = () => ({
   type: CLEAN_BOARD_DETAIL
@@ -103,24 +97,8 @@ export const boardUpload = data => ({
 export default (state = initialState, action) => {
   return produce(state, (draft) => {
     switch (action.type) {
-      case ON_CHANGE_MARKDOWN: {
-        if(action.name === "title"){
-          return {
-            ...state,
-            title: action.value
-          }
-        } else {
-          return {
-            ...state,
-            markdownContent: action.value
-          }
-        }
-      }
       case CLEAN_BOARD_DETAIL: {
-        return {
-          ...state,
-          boardResult: null
-        }
+        break;
       }
       case UPDATE_FORM: {
         return {
@@ -131,9 +109,7 @@ export default (state = initialState, action) => {
         }
       }
       case UPLOAD_IMAGES_REQUEST: {
-        return {
-          ...state
-        }
+        break;
       }
       case UPLOAD_IMAGES_SUCCESS: {
         return {

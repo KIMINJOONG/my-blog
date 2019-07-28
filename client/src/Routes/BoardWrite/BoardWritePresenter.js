@@ -1,55 +1,26 @@
-import React from "react";
-import styled from "styled-components";
-import Helmet from "react-helmet";
-import EditorPane from '../../Components/editor/editorPane';
+import React from 'react';
+import styled from 'styled-components';
 
 const Container = styled.div`
+    margin-top: 10px;
+    & .title{
+        width: 100%;
+        margin-bottom: 10px;
+    }
 
+    & .content {
+        width: 100%;
+        height: 500px;
+    }
 `;
-
-
-
-const BoardWritePresenter = ({
-  onSubmitForm,
-  imageInput,
-  onClickImageUpload,
-  onChangeImages,
-  imagePaths,
-}) => (
-  <>
-    <Helmet>게시글 쓰기 | kohubi's blog</Helmet>
+const BoardWritePresenter = ({title, content, handleChange, handleSubmit }) => (
     <Container>
-      <form 
-        onSubmit={onSubmitForm} 
-        encType="multipart/form-data"
-      >
-        <button 
-          onClick={onClickImageUpload}>이미지 업로드</button>
-        <input
-          type="file"
-          multiple
-          hidden
-          ref={imageInput}
-          onChange={onChangeImages}
-        />
-        <EditorPane />
-        <button onClick={onSubmitForm}>등록</button>
-      </form>
-      <div>
-        {imagePaths.map((v, i) => {
-          return (
-            <div key={v} style={{ display: "inline-block" }}>
-              <img
-                src={`http://localhost:4000/${v}`}
-                style={{ width: "200px" }}
-                alt={v}
-              />
-            </div>
-          );
-        })}
-      </div>
+        <form onSubmit={handleSubmit} >
+            <input className="title" type="text" name="title" value={title} onChange={handleChange} placeholder={"제목을 입력해주세요"} />
+            <textarea className="content" name="content" value={content} onChange={handleChange} placeholder={"내용을 입력해주세요"}/>
+            <button onClick={handleSubmit}>전송</button>
+        </form>
     </Container>
-  </>
 );
 
 export default BoardWritePresenter;
