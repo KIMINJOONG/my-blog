@@ -40,7 +40,7 @@ class BoardWriteContainer extends Component {
         e.preventDefault();
         const data = {
             title: this.state.title,
-            description: this.state.description,
+            content: this.state.content,
             fileUrl: this.props.imagePaths
         }
         this.props.boardUpload(data);

@@ -4,7 +4,9 @@ const BoardSchema = new mongoose.Schema({
   title: {
     type: String
   },
-  content: String,
+  content: {
+    type: String
+  },
   category: Number,
   createdAt: {
     type: Date,

@@ -150,17 +150,11 @@ export default (state = initialState, action) => {
         }
       }
       case GET_BOARD_LIST_REQUEST: {
-        return {
-          ...state,
-          loading: true,
-        };
+        break;
       }
       case GET_BOARD_LIST_SUCCESS: {
-        return {
-          ...state,
-          loading: false,
-          boardsList: action.data
-        };
+        draft.boardsList = action.data;
+        break;
       }
       case GET_BOARD_LIST_FAILURE: {
         return {

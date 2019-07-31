@@ -12,6 +12,7 @@ export const postUpload = async (req, res) => {
       fileUrl
     },
   } = req;
+  console.log(req.body);
   try{
     const newBoard = await Board.create({
       title,
