@@ -26,7 +26,7 @@ const Title = styled.span`
 `;
 
 const Boards = ({ title, id, images }) => (
-  <Link to={`board/detail/${id}`}>
+  <Link to={`board/${id}`}>
     <Container>
       <ImageContainer>
         {
