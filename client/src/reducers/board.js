@@ -98,6 +98,7 @@ export default (state = initialState, action) => {
   return produce(state, (draft) => {
     switch (action.type) {
       case CLEAN_BOARD_DETAIL: {
+        draft.boardResult = null;
         break;
       }
       case UPDATE_FORM: {

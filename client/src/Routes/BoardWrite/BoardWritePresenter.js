@@ -22,7 +22,9 @@ const BoardWritePresenter = ({
     onClickImageUpload,
     onChangeImages,
     imagePaths,
-    onClickImageDelete }) => (
+    onClickImageDelete,
+    isUpdate
+    }) => (
     <Container>
         <form onSubmit={handleSubmit} >
             <input className="title" type="text" name="title" value={title} onChange={handleChange} placeholder={"제목을 입력해주세요"} />
@@ -38,24 +40,31 @@ const BoardWritePresenter = ({
                 ref={imageInput}
                 onChange={onChangeImages}
             />
-            <button onClick={handleSubmit}>전송</button>
+            {
+              isUpdate ? (
+                <button onClick={handleSubmit}>수정</button>
+              ) : (
+                <button onClick={handleSubmit}>등록</button>
+              )
+            }
+            
         </form>
         <div>
-        {imagePaths.map((v, i) => {
-          return (
-            <div key={v} style={{ display: "inline-block" }}>
-              <img
-                src={`http://localhost:4000/${v}`}
-                style={{ width: "200px" }}
-                alt={v}
-              />
-              <div>
-                <button onClick={onClickImageDelete(i)}>제거</button>
+          {imagePaths.map((src, i) => {
+            return (
+              <div key={i} style={{ display: "inline-block" }}>
+                <img
+                  src={`http://localhost:4000/${src}`}
+                  style={{ width: "200px" }}
+                  alt={i}
+                />
+                <div>
+                  <button onClick={onClickImageDelete(i)}>제거</button>
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
     </Container>
 );
 

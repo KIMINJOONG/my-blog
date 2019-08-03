@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import BoardDetailPresenter from './BoardDetailPresenter'
+import BoardDetailPresenter from './BoardDetailPresenter';
+
 
 class BoardDetailContainer extends Component {
       componentDidMount() {

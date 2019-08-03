@@ -18,6 +18,26 @@ const ButtonContainer = styled.div`
     text-align: center;
 `;
 
+const Button = styled.div`
+    display: inline-block;
+    width: 70px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid black;
+    margin: 0 10px;
+`;
+
+const Slink = styled(Link)`
+    display: inline-block;
+    width: 70px;
+    height: 30px;
+    border: 1px solid black;
+    line-height: 30px;
+    text-align: center;
+`;
+
 const BoardDetailPresenter = ({ boardResult, id, handleDelete }) => (
     boardResult && 
     <div>
@@ -26,9 +46,26 @@ const BoardDetailPresenter = ({ boardResult, id, handleDelete }) => (
         </Header>
         <Date>{boardResult.createdAt}</Date>
         <p>{boardResult.content}</p>
+        {
+            boardResult && boardResult.images && (
+                <div>
+                    {boardResult.images.map((image, i) => {
+                        return (
+                        <div key={i} style={{ display: "inline-block" }}>
+                            <img
+                            src={`http://localhost:4000/${image.src}`}
+                            style={{ width: "200px" }}
+                            alt={image.src}
+                            />
+                        </div>
+                        );
+                    })}
+                </div>
+            )
+        }
         <ButtonContainer>
-            <Link to={`/board/update/${id}`}>수정</Link>
-            <button onClick={() => handleDelete(id)}>삭제</button>
+            <Slink to={`/board/update/${id}`}>수정</Slink>
+            <Button onClick={() => handleDelete(id)}>삭제</Button>
         </ButtonContainer>
     </div>
 );

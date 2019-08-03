@@ -9,8 +9,30 @@ class BoardWriteContainer extends Component {
 
     state = {
         title: '',
-        content: ''
+        content: '',
+        images: null,
+        isUpdate: false,
     }
+
+    componentDidMount() {
+        const id = this.props.location.pathname.split("/")[3];
+        if(id) {
+            this.props.getBoardDetail(id);
+            if(this.props.boardResult) {
+                this.setState({
+                    title: this.props.boardResult.title,
+                    content: this.props.boardResult.content,
+                    isUpdate: true
+                });
+            }
+        }
+    }
+
+    componentWillUnmount() {
+        this.props.cleanBoardDetail();
+    }
+
+    
 
     handleChange = (e) => {
         this.setState({
@@ -47,12 +69,12 @@ class BoardWriteContainer extends Component {
     }
     render(){
         const { imagePaths } = this.props;
-        const { title, content } = this.state;
+        const { title, content,isUpdate } = this.state;
         const {handleChange, handleSubmit } = this;
         return (
             <BoardWritePresenter
                 title={title}
-                content={content} 
+                content={content}
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}
                 onClickImageUpload={this.onClickImageUpload}
@@ -60,6 +82,7 @@ class BoardWriteContainer extends Component {
                 onChangeImages={this.onChangeImages}
                 imagePaths={imagePaths}
                 onClickImageDelete={this.onClickImageDelete}
+                isUpdate={isUpdate}
             />
         );
     }
